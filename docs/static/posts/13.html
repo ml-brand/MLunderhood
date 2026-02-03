@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #13</title>
+  <meta name="description" content=" Как мы работали над YaFSDP   Недавно запустилась библиотека YaFDP, которая ускоряет обучение больших языковых моделей. Подробнее о ней можно почитать  в статье на Хабре . А сегодня руководитель групп" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/13.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #13" />
+  <meta property="og:description" content=" Как мы работали над YaFSDP   Недавно запустилась библиотека YaFDP, которая ускоряет обучение больших языковых моделей. Подробнее о ней можно почитать  в статье на Хабре . А сегодня руководитель групп" />
+  
+  <meta property="article:published_time" content="2024-06-28T09:36:35+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary" />
+  
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../page-4.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../page-4.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=13" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="13">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2024-06-28T09:36:35+00:00">2024-06-28 09:36 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Как мы работали над YaFSDP</strong><br><br>Недавно запустилась библиотека YaFDP, которая ускоряет обучение больших языковых моделей. Подробнее о ней можно почитать <a href="https://habr.com/en/companies/yandex/articles/817509/" rel="nofollow noopener noreferrer">в статье на Хабре</a>. А сегодня руководитель группы претрейна YandexGPT Михаил Хрущев ответил на несколько наших вопросов о том, как создавалась библиотека. <br><br><strong>Когда и как началась работа над YaFSDP?</strong><br><br>За 2 недели до Нового года в 2023-м. К концу года стало ясно, что некоторые наши оптимизации не дают ускорения, которого мы ожидали. Я пошёл искать причины такого и нашел праздничную «ёлочку».<br><br><strong>Ориентировались ли на существующие решения? Были ли какие-то референсы, может?</strong><br><br>Сам алгоритм предложили в статье <a href="https://arxiv.org/abs/1910.02054" rel="nofollow noopener noreferrer">ZeRO: Memory Optimizations Toward Training Trillion Parameter Models</a>. Его реализация была также представлена в фреймворке DeepSpeed. К сожалению, она не очень масштабировалась и содержала много багов. Другая реализация, FSDP, сильно лучше, но и там есть проблемы с аллокацией памяти и коммуникациями. Поэтому я начал разрабатывать свою реализацию, к которой впоследствии подключились и другие ребята из моей команды.<br><br><strong>Какие трудности возникали во время работы? </strong><br><br>Было несколько технических трудностей. Вообще, от начала реализации до выкатки в обучение прошло чуть более месяца — разработка была более или менее гладкой. Самым сложным было продумать идею реализации, на это потребовалось больше месяца. <br><br>Здесь труднее всего было реализовать кода, который должен исполняться сразу после backward (обратного распространения ошибки) по слою. Я неожиданно столкнулся с тем, что torch (фреймворк глубокого обучения) совсем не приспособлен для такой хитрой логики. Но решение тем не менее нашлось.<br><br>На этом на сегодня все. Рассказывайте о своём опыте работы с LLM в комментариях! <br><br><a href="https://t.me/+piLRT29FdjRiZmQy" rel="nofollow noopener noreferrer">ML Underhood</a></div>
+      <div class="actions">
+        <span>5 880 просмотров · 30 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/13" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../page-4.html">К списку постов</a> · <a href="./13.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link" href="./14.html" style="visibility:visible">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./11.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 13, "media": []}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLUnderhood", "last_sync_utc": "2026-02-03T14:46:45Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 272, "updated": 0, "media_downloaded": 241}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>

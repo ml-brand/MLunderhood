@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #135</title>
+  <meta name="description" content=" Новая порция докладов с ICML 2025   Конференция в разгаре, а инженеры из Яндекса продолжают отмечать и комментировать любопытные работы. Делимся ими с вами.    AI&amp;#x27;s Models of the World, and Ours" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/135.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #135" />
+  <meta property="og:description" content=" Новая порция докладов с ICML 2025   Конференция в разгаре, а инженеры из Яндекса продолжают отмечать и комментировать любопытные работы. Делимся ими с вами.    AI&amp;#x27;s Models of the World, and Ours" />
+  <meta property="og:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/135_480.webp" />
+  <meta property="og:image:alt" content="ML Underhood" />
+  <meta property="article:published_time" content="2025-07-18T09:15:01+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/135_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../page-2.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../page-2.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=135" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="135">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2025-07-18T09:15:01+00:00">2025-07-18 09:15 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Новая порция докладов с ICML 2025</strong><br><br>Конференция в разгаре, а инженеры из Яндекса продолжают отмечать и комментировать любопытные работы. Делимся ими с вами.<br><br><a href="https://icml.cc/virtual/2025/invited-talk/39862?utm_source=chatgpt.com" rel="nofollow noopener noreferrer"><strong>AI&#x27;s Models of the World, and Ours</strong></a><br><br>Invited talk от Джона Кляйнберга — об отличиях в представлениях о мире у моделей и у человека. Мотивация примерно такая: после наступления сингулярности человеческий труд во многих областях станет не нужен, и это как минимум обидно, если не сказать страшно. Хочется, чтобы люди продолжали что-то делать. Чтобы представить эту ситуацию, можно обратиться к задаче, где она уже произошла: к игре в шахматы. Несмотря на то, что компьютеры давно играют в шахматы лучше людей, интерес к игре только вырос — в первую очередь, благодаря интернету. Люди играют в шахматы больше, чем когда-либо. Если сравнить шахматные партии с участием компьютера и партии между людьми, видно, что во вторых намного больше красивых комбинаций — эстетики, которая играла важную роль в шахматном образовании прошлого. Проще говоря, в человеческих партиях есть то, что принято называть «красивыми идеями», благодаря которым эта игра и получила такое распространение во всем мире.<br><br>Кляйнберг рассказал о проблеме обучения моделей, играющих как человек с рейтингом, например, 1100, 1200, 1600, 1800 или 2300, в надежде воспроизвести красивые человеческие партии. Это оказалось сложней, чем можно было ожидать. С человеческой точки зрения ходы моделей, которые пытаются имитировать игру человека, всё ещё выглядят неестественно, и лучшие попытки дают accuracy около 60%. Но результат оказался востребован — «с компьютером намного интереснее играть, когда он проигрывает» (с).<br><br>Во второй части выступления Кляйнберг упомянул старый результат: задача распознавания языка из счётно бесконечного множества неразрешима за конечное время, зато задача генерации предложений из неизвестного языка — решается. Но решить её можно тривиально: выбрать и генерировать удлиняемую простую конструкцию из языка — неинтересно. Результат группы Кляйнберга этого года — возможность делать это с константной плотностью, то есть так, чтобы выход модели покрывал ⅛ языка. С другой стороны, несложно доказать, что больше половины неизвестного произвольного языка сгенерировать теоретически невозможно.<br><br><a href="https://icml.cc/virtual/2025/invited-talk/39865" rel="nofollow noopener noreferrer"><strong>Generative AI&#x27;s Collision with Copyright Law<br></strong></a><br>Доклад о том, как использовать защищённые авторским правом данные для обучения моделей. Ключевой вывод — ситуация сильно зависит от страны:<br><br>— В Израиле любое использование данных для обучения признаётся fair use.<br><br>— В ЕС данные можно использовать, если к ним есть легальный доступ; при этом его нельзя ограничивать для образовательных и культурных учреждений. У авторов есть право исключать свои произведения из датасетов, используемых в обучении. В Японии и Сингапуре ситуация в целом такая же.<br><br>— В США всё сложнее из-за прецедентного права, многое решается индивидуально в суде. Авторы (в отличие от правообладателей) не могут запретить использование своих работ для обучения. А если использование данных может повлиять на рынок правообладателя, скорее всего, это считается нарушением.<br><br><a href="https://icml.cc/virtual/2025/poster/46403" rel="nofollow noopener noreferrer"><strong>Riemannian Diffusion Adaptation for Distributed Optimization on Manifolds</strong></a><br><br>Отдельный лайк авторам за задачу оптимизации в римановых многообразиях. Сюда входит задача глубокого обучения с ортогональными матрицами, а это то, что помогало стабилизировать асинхронное глубокое обучение в течение продолжительного времени. На древнем рекламном фреймворке глубокого обучения такие модели — с всегда ортогональными слоями — обучались стабильнее и показывали лучшее качество (при переходе на allreduce, к сожалению, ортогональные матрицы стали вести себя так же, как обычные, но медленнее). Авторы приписывают к достоинствам метода решение задач на любых многообразиях, но при этом не сравнивают себя со специализированными методами для разных задач. Вкладка экспериментов — скромная для метода, решающего любые задачи: в abstract — четыре примера, в экспериментах — всего два, и нет сравнения со специализированными под каждую задачу методами.<br><br><em>Работы заметили </em><em><tg-emoji emoji-id="5224192932302565805">❣</tg-emoji></em><em> Алексей Поспелов и Алексей Морозов<br></em><br><a href="https://t.me/+yaGEbJ4stulhZmYy" rel="nofollow noopener noreferrer">ML Underhood</a><br><br>#YaICML25<div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/135_480.webp" srcset="../../assets/media/thumbs/135_480.webp 480w, ../../assets/media/135.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="135" data-image-index="0" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/136_480.webp" srcset="../../assets/media/thumbs/136_480.webp 480w, ../../assets/media/136.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="135" data-image-index="1" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/137_480.webp" srcset="../../assets/media/thumbs/137_480.webp 480w, ../../assets/media/137.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="135" data-image-index="2" /></div></div>
+      <div class="actions">
+        <span>1 363 просмотров · 13 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/135" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../page-2.html">К списку постов</a> · <a href="./135.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link" href="./138.html" style="visibility:visible">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./132.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 135, "media": [{"kind": "photo", "path": "../../assets/media/135.jpg", "thumb": "../../assets/media/thumbs/135_480.webp", "size": 90749, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/136.jpg", "thumb": "../../assets/media/thumbs/136_480.webp", "size": 96894, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/137.jpg", "thumb": "../../assets/media/thumbs/137_480.webp", "size": 182135, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLUnderhood", "last_sync_utc": "2026-02-03T14:46:45Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 272, "updated": 0, "media_downloaded": 241}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #112</title>
+  <meta name="description" content=" Как Яндекс Браузер извлекает контент веб-страниц для пересказа? Часть I   Представьте, что вам нужно быстро проанализировать текст с десятка веб-страниц. На помощь придет функция  краткого пересказа " />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/112.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #112" />
+  <meta property="og:description" content=" Как Яндекс Браузер извлекает контент веб-страниц для пересказа? Часть I   Представьте, что вам нужно быстро проанализировать текст с десятка веб-страниц. На помощь придет функция  краткого пересказа " />
+  
+  <meta property="article:published_time" content="2025-05-28T12:56:24+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary" />
+  
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../page-2.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../page-2.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=112" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="112">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2025-05-28T12:56:24+00:00">2025-05-28 12:56 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Как Яндекс Браузер извлекает контент веб-страниц для пересказа? Часть I</strong><br><br>Представьте, что вам нужно быстро проанализировать текст с десятка веб-страниц. На помощь придет функция <a href="https://300.ya.ru/" rel="nofollow noopener noreferrer">краткого пересказа</a> в Яндекс Браузере. Здесь — и не только здесь — работает суммаризация текста. Но возникает вопрос: что попадает в качестве входных данных в LLM, занимающуюся суммаризацией? На него в двух постах ответит Михаил Катунькин, старший ML-разработчик в Яндекс Браузере. В первой части речь пойдёт об общей идее и реализации, а во второй — об обучении модели. <br><br><strong>Общая идея</strong><br><br>Самое очевидное решение — взять HTML-код страницы. Его проблема в том, что верстка содержит в себе много лишней текстовой информации, которая «засорит» и сильно увеличит контекст модели: теги, скрипты, стили. Всё это приведёт к ухудшению качества пересказа, большему времени работы модели и удорожанию инференса.<br><br>Значит, следующий шаг — извлечь только текстовую информацию. Это улучшит ситуацию, но в контекст модели по-прежнему будет проникать много лишнего: реклама, меню, комментарии. А из-за того, что модель потеряет информацию о структуре страницы, в пересказ начнёт попадать, например, содержание статей из блока рекомендаций похожего контента.<br><br>Можно использовать разные эвристики, чтобы извлекать не весь текст страницы, а только полезный. Такой подход, например, используется в <a href="https://github.com/mozilla/readability" rel="nofollow noopener noreferrer">режиме чтения в браузере</a> Однако из-за разнообразия верстки сайтов эта техника не является универсальной, нуждается в переподборе эвристик с течением времени, даёт плохое качество извлечения текста на определённых доменах.<br><br>Мы решили извлекать основной контент страницы при помощи ML-модели. А затем использовать информацию из HTML-кода для задания структуры текста: заголовков, подзаголовков, ссылок, выделений.<br><br>Важный нюанс: пересказ должен работать быстро даже при медленном интернете. Передавать тяжелые HTML-страницы целиком на серверы Яндекса было бы плохим решением. Поэтому модель следовало сделать легковесной, чтобы она работала непосредственно на устройстве пользователей.<br><br><strong>Реализация</strong><br><br>HTML представляет собой дерево тегов. Блоки с текстом на странице — это листья в дереве. Будем для каждого листа принимать решение: брать его или нет в конечный текст. В качестве бинарного классификатора возьмем Catboost. <br><br>Классификация осуществляется на основе множества статистик, посчитанных при обходе дерева: по тегам, атрибутам тегов, текстам. Существенное улучшение качества даёт следующий трюк: блоки с текстом классифицируется не независимо, а группами с одинаковым путём из тегов и атрибутов от блока до корня. При этом для хорошего качества извлечения текста модели достаточно информации о структуре разметки и базовых статистик по текстам. <br><br>Использование семантических вектор-признаков, посчитанных по текстам, заметного улучшения качества суммаризации не даёт. Поэтому в продакшен-версии от них решили отказаться ради скорости работы модели.<br><br>Было важно оптимизировать код подсчёта признаков для модели, из-за того, что деревья тегов могут содержать сотни тысяч узлов. В итоговой версии код реализовали на C++. Он работает 40 мс на одно извлечение в 90 перцентили. Для сравнения, код на JS с эвристиками из режима чтения в Mozilla работает 1,125 с в 90 перцентили. Для достижения этого результата, в частности, мы оптимизировали динамические выделения памяти, а также удалили из набора признаков сложные в вычислении, но не столь значимые.<br><br>Из HTML-дерева с проклассифицироваными листьями уже можно получить очищенный текст в формате markdown. Для этого по дереву идёт обход в глубину, собирающий текст из листьев, прошедших порог классификации, и учитывающий наличие тегов с заголовками, ссылками, выделениями и прочим.<br><br><a href="https://t.me/+wYt6RVTtZTc2MWJi" rel="nofollow noopener noreferrer">ML Underhood</a></div>
+      <div class="actions">
+        <span>2 117 просмотров · 25 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/112" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../page-2.html">К списку постов</a> · <a href="./112.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link" href="./113.html" style="visibility:visible">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./111.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 112, "media": []}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLUnderhood", "last_sync_utc": "2026-02-03T14:46:45Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 272, "updated": 0, "media_downloaded": 241}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>

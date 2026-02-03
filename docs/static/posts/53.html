@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #53</title>
+  <meta name="description" content=" NPU в Яндекс Станции   В Станции Миди, Дуо Макс и ТВ Станции устанавливают нейронные процессоры (NPU). О том, зачем они нужны и с какими трудностями специалисты компании столкнулись при их использова" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/53.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #53" />
+  <meta property="og:description" content=" NPU в Яндекс Станции   В Станции Миди, Дуо Макс и ТВ Станции устанавливают нейронные процессоры (NPU). О том, зачем они нужны и с какими трудностями специалисты компании столкнулись при их использова" />
+  
+  <meta property="article:published_time" content="2025-01-17T12:51:43+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary" />
+  
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../page-3.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../page-3.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=53" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="53">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2025-01-17T12:51:43+00:00">2025-01-17 12:51 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>NPU в Яндекс Станции</strong><br><br>В Станции Миди, Дуо Макс и ТВ Станции устанавливают нейронные процессоры (NPU). О том, зачем они нужны и с какими трудностями специалисты компании столкнулись при их использовании, нашему каналу рассказал ML-разработчик Александр Ростов.<br><br>Вычислительные ресурсы Станции ограничены, а если поставить в такое небольшое устройство слишком мощный процессор, он будет сильно нагреваться. Решение — NPU, который берёт на себя расчёты, связанные с моделями. Это чип, созданный специально для работы с нейросетями и ускорения ML-задач. <br><br>Так, до внедрения нейронного процессора разработчикам приходилось делать маленькие модели голосовой активации или споттерные модели — до миллиона параметров. Благодаря NPU в Станции теперь есть модели и на десятки миллионов параметров. Это позволило существенно прибавить в качестве, а также снизить число ложных срабатываний и случаев, когда колонка не реагирует на запрос пользователя.<br><br>По сути, NPU выступает в роли верификатора, проверяя, не допустила ли ложного срабатывания модель, работающая на CPU. Кроме того, NPU позволяет уменьшить CPU-модель и тем самым снять часть нагрузки с центрального процессора. Из-за этого вся система стала работать быстрее. <br><br>NPU работает со свёрточными нейросетями. Они учатся на GPU, затем конвертируются для применения с помощью библиотеки TensorFlow Lite для работы на NPU. Чип полностью используется споттерными моделями, однако на Станции Дуо Макс он отвечает и за распознавание жестов. <br><br>При тренировке NPU-моделей возникла проблема: стандартные датасеты оказались непригодны для обучения хорошей NPU-модели. Это было связано как со спецификой работы верификатора, так и с увеличением размера модели. CPU-модель работает на всём потоке звука, и количество негативных примеров преобладает над активациями. В свою очередь, верификатор работает только на активациях CPU-модели, поэтому видит в основном позитивные примеры. <br><br>Для снижения числа случаев, когда колонка не реагирует на пользователя, понадобилось «ухудшить» CPU-модель, чтобы она активировалась чаще. Так как обучающие данные изначально состояли из активаций более хорошей CPU-модели, это вызвало появление ложных активаций, которых верификационная модель не видела при обучении.<br><br>Чтобы решить эти проблемы, потребовалось собрать новый датасет, а также увеличить его в несколько раз.<br><br><a href="https://t.me/+3JrRFFP3PqxiNWVi" rel="nofollow noopener noreferrer">ML Underhood</a></div>
+      <div class="actions">
+        <span>3 103 просмотров · 27 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/53" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../page-3.html">К списку постов</a> · <a href="./53.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link" href="./54.html" style="visibility:visible">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./52.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 53, "media": []}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLUnderhood", "last_sync_utc": "2026-02-03T14:46:45Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 272, "updated": 0, "media_downloaded": 241}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>

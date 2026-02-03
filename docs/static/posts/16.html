@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #16</title>
+  <meta name="description" content=" Впечатления от ICML 2024 и несколько интересных статей   Недавно завершилась ICML 2024. На конференции побывал руководитель R&amp;amp;D в Геосервисах Яндекса Дмитрий Бабаев и специально для нашего канала" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/16.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #16" />
+  <meta property="og:description" content=" Впечатления от ICML 2024 и несколько интересных статей   Недавно завершилась ICML 2024. На конференции побывал руководитель R&amp;amp;D в Геосервисах Яндекса Дмитрий Бабаев и специально для нашего канала" />
+  
+  <meta property="article:published_time" content="2024-08-09T14:14:34+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary" />
+  
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../page-4.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../page-4.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=16" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="16">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2024-08-09T14:14:34+00:00">2024-08-09 14:14 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Впечатления от ICML 2024 и несколько интересных статей</strong><br><br>Недавно завершилась ICML 2024. На конференции побывал руководитель R&amp;D в Геосервисах Яндекса Дмитрий Бабаев и специально для нашего канала поделился впечатлениями от события. А заодно — рассказал о нескольких интересных докладах. Итак, слово Дмитрию: <br><br><blockquote>Было очень много статей из мира LLM и на связанные темы, например, RLHF. Обучение с подкреплением — всё ещё активно развивающееся направление исследований, и статей было достаточно много.<br><br>Показалось, что было не так много докладов по компьютерному зрению. Вероятно из-за того, что есть хорошие специализированные конференции. Почти не попадались статьи о классическом ML.<br><br>Зато появился новый интересный формат публикаций — position papers. В них исследователи описывают свой взгляд на важную проблему или возможные направления исследований. Думаю, что это полезный формат.</blockquote><br><br><strong>Несколько интересных статей по RL.</strong><br><br><a href="https://arxiv.org/abs/2403.03950" rel="nofollow noopener noreferrer"><strong>Stop Regressing: Training Value Functions via Classification for Scalable Deep RL</strong></a><br><br>Oral-статья от авторов из DeepMind. В ней прекрасно не только название, но и содержание. Авторы развивают идеи из старых статей — например, из <a href="https://arxiv.org/abs/1806.04613" rel="nofollow noopener noreferrer">Improving Regression Performance with Distributional Losses</a> — о том, что замена MSE-функции потерь на нечто, похожее на классификацию, делает обучение нейросетей более стабильным. Исследователи показывают, что такая замена очень полезна для обучения прогнозу будущих наград во многих задачах в RL-постановке.<br><br>Статья не только представляет интерес для исследователей и пользователей RL, но и наводит на мысли о том, где ещё такая модификация задачи регрессии может помочь.<br><br><a href="https://arxiv.org/abs/2401.12187" rel="nofollow noopener noreferrer"><strong>WARM: On the Benefits of Weight Averaged Reward Models</strong></a><br><br>Ещё одна статья от DeepMind. Авторы показывают, что для решения проблемы с хакингом наград в RLHF помогает обучить несколько моделей оценки награды и усреднить их веса. Интересно, что этот метод работает немного лучше, чем ансамбль моделей.<br><br><a href="https://arxiv.org/abs/2308.01399" rel="nofollow noopener noreferrer"><strong>Learning to Model the World with Language</strong></a><br><br>Oral-статья от авторов из Беркли, в том числе от таких известных исследователей как Данияр Хафнер и Питер Аббил. Интересно, что предыдущую версию этой публикации не взяли на ICLR, а на ICML она попала сразу в список oral-статей.<br><br>Авторы использовали DreamerV3 и добавили к входным наблюдениям-картинкам ещё и полезный текст. Оказалось, что агент начинает эффективно использовать текст и неявно учится связывать текстовую и картиночную информацию.<br><br><a href="https://arxiv.org/abs/2301.04104" rel="nofollow noopener noreferrer">DreamerV3</a> сам по себе достаточно интересен. Например, с его помощью впервые удалось решить задачу получения алмазов в игре Minecraft без каких-либо подсказок или демонстраций.<br><br><a href="https://t.me/+I9JmOAFkoqJjMjJi" rel="nofollow noopener noreferrer">ML Underhood</a></div>
+      <div class="actions">
+        <span>6 285 просмотров · 26 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/16" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../page-4.html">К списку постов</a> · <a href="./16.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link" href="./17.html" style="visibility:visible">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./15.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 16, "media": []}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLUnderhood", "last_sync_utc": "2026-02-03T14:46:45Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 272, "updated": 0, "media_downloaded": 241}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>

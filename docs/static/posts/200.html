@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #200</title>
+  <meta name="description" content=" Как прошла CIKM 2025: взгляд изнутри   Недавно в Сеуле закончилась международная конференция CIKM 2025. Своими впечатлениями о ней поделился Александр Михеев, руководитель группы разработки сервисов " />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/200.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #200" />
+  <meta property="og:description" content=" Как прошла CIKM 2025: взгляд изнутри   Недавно в Сеуле закончилась международная конференция CIKM 2025. Своими впечатлениями о ней поделился Александр Михеев, руководитель группы разработки сервисов " />
+  <meta property="og:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/200_480.webp" />
+  <meta property="og:image:alt" content="ML Underhood" />
+  <meta property="article:published_time" content="2025-12-01T08:14:26+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/200_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=200" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="200">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2025-12-01T08:14:26+00:00">2025-12-01 08:14 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Как прошла CIKM 2025: взгляд изнутри<br></strong><br>Недавно в Сеуле закончилась международная конференция CIKM 2025. Своими впечатлениями о ней поделился Александр Михеев, руководитель группы разработки сервисов моделей.<br><br><blockquote>Мне впервые довелось съездить на CIKM. Сеул порадовал и золотой тёплой осенью (днём температура поднималась до +19), и хорошо организованной конференцией в центре знаменитого района Гангнам.<br><br>Послушал много интересных докладов. Больше всего впечатлили работы от крупных китайских компаний: TikTok, Kuaishou, Alibaba, Meituan, NetEase. В частности, удалось подробно поговорить с коллегами из Kuaishou. Это вторая по популярности платформа для просмотра и загрузки коротких видео в Китае, которая в этом году наделала шума техническим отчётом об их end-to-end-генеративной системе рекомендаций <a href="https://arxiv.org/abs/2506.13695v1" rel="nofollow noopener noreferrer">OneRec</a>. На CIKM они представили серию сильных работ, напрямую релевантных направлению развития рекомендательных систем в Яндексе.<br><br>Для меня, как представителя ML-инфраструктуры, самым интересным был доклад по статье <a href="https://arxiv.org/abs/2411.09425v3" rel="nofollow noopener noreferrer">MARM: Unlocking the Recommendation Cache Scaling-Law through Memory Augmentation and Scalable Complexity</a>. В ней предлагается для трансформерных рекомендательных моделей перенести часть вычислений KV-матриц в офлайн, складывать их в отдельное хранилище и переиспользовать при инференсе в реалтайме. С инфраструктурной точки зрения схема нетривиальна: из-за большого размера KV-матриц возрастает нагрузка на пропускную способность отдельных компонентов — сети и шины памяти. Но при личном разговоре с докладчиком удалось узнать основные приёмы, которые помогают смягчить эти ограничения. Всё протестируем и вернёмся рассказать о них.<br><br>Из любопытных впечатлений. Я ехал на конференцию с ощущением, что буду тихо сидеть в углу и смотреть на тяжеловесов с передового края науки (индустриальной, прикладной, академической), до которых нам ещё далеко. А на деле, по многим направлениям уровень наших исследований и инфраструктуры рекомендательных систем не уступает крупным зарубежным компаниям. Мы можем чаще публиковать доклады о наших внедрениях на академических конференциях.<br><br>При этом огромная конкуренция в Китае стремительно продвигает индустрию рекомендательных систем вперёд. Поэтому расслабляться однозначно не стоит.</blockquote><br><br>Продолжаем следить за индустрией и рассказывать о главных мировых ML-конференциях.<br><br><a href="https://t.me/+59mQ5tDcUnc4OTRi" rel="nofollow noopener noreferrer">ML Underhood</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/200_480.webp" srcset="../../assets/media/thumbs/200_480.webp 480w, ../../assets/media/200.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="200" data-image-index="0" /><video controls preload="metadata" src="../../assets/media/201_IMG_4800.mp4"></video></div></div>
+      <div class="actions">
+        <span>1 393 просмотров · 21 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/200" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./200.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link" href="./202.html" style="visibility:visible">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./199.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 200, "media": [{"kind": "photo", "path": "../../assets/media/200.jpg", "thumb": "../../assets/media/thumbs/200_480.webp", "size": 305236, "mime": "image/jpeg", "name": null}, {"kind": "video", "path": "../../assets/media/201_IMG_4800.mp4", "thumb": null, "size": 6065049, "mime": "video/mp4", "name": "IMG_4800.mp4"}]}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLUnderhood", "last_sync_utc": "2026-02-03T14:46:45Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 272, "updated": 0, "media_downloaded": 241}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>

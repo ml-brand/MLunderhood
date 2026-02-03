@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #272</title>
+  <meta name="description" content=" Alice AI VLM dev на MWS Vision Bench: что конкретно изменилось в модели (и вокруг неё)   Сегодня наша базовая визуально-языковая модель Alice AI VLM dev появились на втором месте в  MWS Vision Bench " />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/272.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #272" />
+  <meta property="og:description" content=" Alice AI VLM dev на MWS Vision Bench: что конкретно изменилось в модели (и вокруг неё)   Сегодня наша базовая визуально-языковая модель Alice AI VLM dev появились на втором месте в  MWS Vision Bench " />
+  <meta property="og:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/272_480.webp" />
+  <meta property="og:image:alt" content="ML Underhood" />
+  <meta property="article:published_time" content="2025-12-22T15:44:26+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/272_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=272" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="272">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2025-12-22T15:44:26+00:00">2025-12-22 15:44 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Alice AI VLM dev на MWS Vision Bench: что конкретно изменилось в модели (и вокруг неё)</strong><br><br>Сегодня наша базовая визуально-языковая модель Alice AI VLM dev появились на втором месте в <a href="https://github.com/mts-ai/MWS-Vision-Bench" rel="nofollow noopener noreferrer">MWS Vision Bench</a> с результатами Overall private test: 0,637 (img→text: 0,886, img→markdown: 0,747, Grounding: 0,065, KIE (JSON): 0,751, VQA: 0,737). Alice AI VLM dev — часть большой Alice AI VLM. Расскажем, как всё обучалось.<br><br>Инженеры Яндекса сумели добиться хороших результатов благодаря обучению модели не только под пользовательские сценарии, но и под бизнесовые. Внутри компании используют VLM для автоматизации документооборота, разметок и многого другого. На этих доменах модель обучается как на стадии претрейна, так и на стадии алайнмента.<br><br>В сценарии «картинка + вопрос» качество упирается не только в генерацию ответа, но и в то, как модель видит изображение, читает текст на нём и следует инструкции. В продакшене Alice AI VLM работает в связке: «называтель» извлекает объекты и строит их иерархию с учётом текстового запроса, а VLM‑рефразер маршрутизирует запрос либо в основной VLM‑генератор, либо в специализированные ветки (например, «решатель»), либо в Alice AI LLM. Alice AI VLM dev (она же базовая VLM) —  это та же модель, которая работает в продакшене как «генератор» и «решатель», но обрабатывающая запросы пользователя напрямую, без предыдущих этапов.<br><br>Обучение VLM двухэтапное: на претрейне мультимодальное next‑token-обучение на большом корпусе, а на алайнменте — SFT + RL, где модель доводят до «ассистентского» поведения.<br><strong><br>Претрейн<br></strong><br>Увеличили Image‑encoder и размер картинки на входе без деградации  — с  896×896 до 1024×1024. Благодаря этому выросло качество работы с деталями, вроде формул, таблиц, этикеток и дорожных знаков. <br><br>Также переформатировали OCR‑данные. Раньше в датасете часто встречались пары «картинка + весь распознанный текст», что хорошо помогало учить модель непосредственно на чтение, но этого было недостаточно для некоторых других сценариев. Например для задач на понимание логической и пространственной связи между блоками текста. <br><br>Теперь обучают VLM отвечать в разных форматах на OCR-данных: выписывая весь текст самостоятельно, выписывая координаты текста вместе с ним, используя текст внешнего OCR или напрямую отвечая на вопрос пользователя. Такой grounded‑OCR улучшает извлечение таблиц и списков, а также выполнение задач на поиск контента. <br><br>Объём претрейна увеличился с 400 миллиардов до 600 миллиардов токенов, а максимальную длину контекста целенаправленно проучили до 32 тысяч. Это позволяет обрабатыватьдлинные документы и несколько изображений в одном запросе.<br><br><strong>Алайнмент</strong><br><br>Раньше фотоинпут получался через дообучение поверх базовой VLM Яндекса: это давало продуктовые фичи, но обновления базовой модели требовали пересборки датасетов, а по пути могли проседать базовые навыки (OCR, следование некоторым инструкциям). <br><br>В последнем релизе сделали «Алису из коробки»: та же базовая VLM стала Alice AI VLM — моделью, отвечающей пользователю. А датасеты и метрики алайнмента объединили так, чтобы одновременно контролировать показатели как «технической» мультимодальности, так и продуктовой.<br><br>Отдельно перенесли сетап RL из текстовой Alice AI LLM. Теперь оптимизируют не только правильность, но и полноту, полезность и проактивность ответа. На потоковой корзине SbS новая версия выигрывает у предыдущей в 63% случаев.<br><br>Подробнее об обучении нашей VLM — читайте в соответствующем разделе <a href="https://habr.com/ru/companies/yandex/articles/974594/#5" rel="nofollow noopener noreferrer">технического отчёта</a>. Там же можно узнать и об изменениях в других моделях семейства.<br><br><a href="https://t.me/+59mQ5tDcUnc4OTRi" rel="nofollow noopener noreferrer">ML Underhood</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/272_480.webp" srcset="../../assets/media/thumbs/272_480.webp 480w, ../../assets/media/272.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="272" data-image-index="0" /></div></div>
+      <div class="actions">
+        <span>17 937 просмотров · 42 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/272" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./272.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link" href="./273.html" style="visibility:visible">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./262.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 272, "media": [{"kind": "photo", "path": "../../assets/media/272.jpg", "thumb": "../../assets/media/thumbs/272_480.webp", "size": 52824, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLUnderhood", "last_sync_utc": "2026-02-03T14:46:45Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 272, "updated": 0, "media_downloaded": 241}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>

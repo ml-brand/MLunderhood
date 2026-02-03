@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #14</title>
+  <meta name="description" content="🇰🇿  Алиса на казахском языке !  Недавно Алиса заговорила на казахском. Это большое событие для нас, поэтому сегодня расскажем, как мы обучали Алису, с какими трудностями столкнулись и как устроен синт" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/14.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #14" />
+  <meta property="og:description" content="🇰🇿  Алиса на казахском языке !  Недавно Алиса заговорила на казахском. Это большое событие для нас, поэтому сегодня расскажем, как мы обучали Алису, с какими трудностями столкнулись и как устроен синт" />
+  <meta property="og:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/14_480.webp" />
+  <meta property="og:image:alt" content="ML Underhood" />
+  <meta property="article:published_time" content="2024-07-19T13:32:29+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/14_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../page-4.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../page-4.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=14" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="14">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2024-07-19T13:32:29+00:00">2024-07-19 13:32 UTC</span></div>
+      </div>
+      <div class="post-body">🇰🇿 <strong>Алиса на казахском языке</strong>!<br><br>Недавно Алиса заговорила на казахском. Это большое событие для нас, поэтому сегодня расскажем, как мы обучали Алису, с какими трудностями столкнулись и как устроен синтез речи у помощника.<br><br>Для обучения использовали датасет из записанных актрисой слов и выражений — всего около 25 часов аудио. По сути, то, как Алиса говорит на русском, мы воспроизвели на казахском — то есть архитектура синтеза языка у помощников схожая. Впрочем, есть нюансы, связанные с G2P — автоматической транскрибацией букв в фонемы. Она нужна, чтобы Алиса произносила слова правильно. <br><br><strong>Работа с заимствованиями</strong><br><br>В казахском, как и в любом другом языке, есть заимствованные слова — в частности, из арабского, фарси, английского, русского и иных языков. Часто такие слова произносятся с использованием звуков, характерных для «исходных» языков. Например, слово «факультет» звучит так же, как в русском, но в фонетической системе казахского языка нет прямых соответствий многим русским звукам. Поэтому мы дополнили фонемный словарь звуками русского языка.<br><br><strong>Агглютинация</strong><br><br>Важная особенность казахского и некоторых других языков — <a href="https://www.reddit.com/r/languagelearning/comments/2hd4em/an_example_of_turkish_languages_agglutination/" rel="nofollow noopener noreferrer">агглютинация</a> — тип словоизменения с помощью последовательного присоединения к неизменяемым корню или основе грамматически однозначных аффиксов. Классический пример: фраза «от наших писателей» на казахском — «жазушыларымыздан». «Жазушы» здесь — «писатель», «лар» — формант множественного числа, «ымыз» — «наш» и так далее. <br><br>Агглютинация распространяется не только на казахские слова, но и на заимствования. Например, «компьютерлеріңізде» значит «на ваших компьютерах». Мы искали в словах интернациональные корни и пытались отделить их от исконно казахских аффиксов, потому что они произносятся по разным правилам. Если заимствованные корни были, то их транскрипция записывалась русскими фонемами, а транскрипция казахских суффиксов — казахскими. <br><br><strong>Нормализация</strong><br><br>Ещё один этап на пути к голосовому ответу — нормализация текста, что особенно важно для корректного произношения числительных. Алиса должна понимать, что перед ней время или номер дома и произносить цифры правильно в соответствии с контекстом. Чтобы достичь этого, мы брали тексты с числами, записанными словами, переводили их в цифры, и учили трансформер преобразовывать их обратно в слова. <br><br><strong>Как текст превращается в речь</strong><br><br>Когда предварительные этапы завершены и текст переведён в фонемы, специальная модель превращает его в спектрограмму — визуальное представление звука. Потом в дело вступает ещё одна модель, которая преобразует спектрограмму в wav-файл. Последние два этапа одинаковы для всех языков. <br><br>Вот такой получился тернистый лингвистический путь! Делитесь мыслями в комментариях :)<br><br><a href="https://t.me/+piLRT29FdjRiZmQy" rel="nofollow noopener noreferrer">ML Underhood</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/14_480.webp" srcset="../../assets/media/thumbs/14_480.webp 480w, ../../assets/media/14.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="14" data-image-index="0" /></div></div>
+      <div class="actions">
+        <span>8 246 просмотров · 63 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/14" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../page-4.html">К списку постов</a> · <a href="./14.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link" href="./15.html" style="visibility:visible">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./13.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 14, "media": [{"kind": "photo", "path": "../../assets/media/14.jpg", "thumb": "../../assets/media/thumbs/14_480.webp", "size": 131654, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLUnderhood", "last_sync_utc": "2026-02-03T14:46:45Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 272, "updated": 0, "media_downloaded": 241}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>

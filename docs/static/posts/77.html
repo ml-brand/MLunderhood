@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #77</title>
+  <meta name="description" content=" Как и зачем Алису учат понимать интонации   Алису учат откликаться не только на её имя, но и на определённые команды и даже интонации. Причём вторая задача — на порядок сложнее. В этом посте Дмитрий " />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/77.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #77" />
+  <meta property="og:description" content=" Как и зачем Алису учат понимать интонации   Алису учат откликаться не только на её имя, но и на определённые команды и даже интонации. Причём вторая задача — на порядок сложнее. В этом посте Дмитрий " />
+  <meta property="og:image" content="https://ml-brand.github.io/MLunderhood/assets/media/77_IMG_6133.MP4.mp4" />
+  <meta property="og:image:alt" content="ML Underhood" />
+  <meta property="article:published_time" content="2025-03-03T07:33:37+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/MLunderhood/assets/media/77_IMG_6133.MP4.mp4" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../page-3.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../page-3.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=77" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="77">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2025-03-03T07:33:37+00:00">2025-03-03 07:33 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Как и зачем Алису учат понимать интонации</strong><br><br>Алису учат откликаться не только на её имя, но и на определённые команды и даже интонации. Причём вторая задача — на порядок сложнее. В этом посте Дмитрий Солодуха, руководитель команды голосовой активации, рассказал, как она решается.<br><br>Голосовая активация — это распознавание фраз в потоке звука, поступающих на микрофоны умного устройства. А модель, которая решает задачу голосовой активации, называют споттером. В Яндексе работают над командными и интонационными споттерами. И если первые в проде уже какое-то время, то вторые — только с 27 февраля этого года и пока только на Станции Миди.<br><br><strong>Как устроен споттер в целом:</strong><br><br>1. На вход поступает сырой сигнал с частотой 16 кГц.<br>2. Преобразуем его в спектрограммы с помощью оконного преобразования Фурье. Это позволяет перейти от временной размерности к частотной.<br>3. Затем уменьшаем размерность, используя мел-шкалу и логарифмирование.<br><br>После этого можно подавать данные в свёрточную сеть. Мы используем свёрточную сеть до 1 млн параметров, похожую на MobileNet, но с одномерными DepthwiseSeparable свёртками вместо двумерных. Линейные слои заменяем их низкоранговым приближением, а вместо Swish берём Hard-Swish — его адаптацию, которую удобно вычислять на железе.<br><br><strong>Идея интонационного споттера</strong><br><br>В какой-то момент базовый споттер улучшили настолько, что он стал отличать произнесённое в девайс слово «Алиса» от обращённого к человеку. Мы подумали, что можно пойти дальше и обучить другой споттер понимать по интонации, что нужно активироваться и отправить запрос на сервер. Это упростит жизнь пользователям и позволит нам сэкономить на произносимых «Алисах». <br><br>Пользователи часто забывают произносить «Алиса» перед запросом, то есть ожидают от неё диалога. Умение активироваться на интонацию становится точкой входа в общение ассистента с пользователем. <br><br>Но здесь столкнулись с проблемами: неочевидно, откуда брать данные, нет готовой разметки, а также непонятно, в какой момент устройство должно активироваться.<br><br>Сначала попробовали использовать данные, которые наговорили асессоры, но из-за того, что люди использовали неестественные интонации, датасет выходил плохим.<br><br>Тогда решили взять данные от ASR — не только из активаций, но и из дослушиваний — режима, в котором колонка проактивно продолжает диалог. Например, если я спрашиваю: «Алиса, какая погода в Минске?», она отвечает и уточняет: «А хотите узнать погоду в Белграде?». При этом пользователь не говорит «Алиса» повторно. Это уже похоже на естественный диалог, хотя и не лишено ограничений, которых не будет у интонационного споттера: дослушивания работают не на каждый запрос и ждут пользователя только в коротком интервале около 3–5 секунд.<br><br>Мы пересэмплировали полученные данные, чтобы убрать смещение в сторону популярных запросов, и получили нужный датасет. <br><br>Для разметки использовали решение соседней команды ASR — классификацию на side-speech. Суть в том, что ASR пытается на последнем этапе своей работы понять, действительно ли речь имела полезный смысл. Мы немного доработали исходные метки и получили для себя псевдолейблы, которые буквально говорят нам, подходящая интонация для активации или нет.<br><br>На видео показано, как интонационный споттер работает и решает более сложные задачи, чем стандартная активация на имя. В итоге это позволяет Алисе быть более человечной в диалоге.<br><br><a href="https://t.me/+9GKzRNPGwYk1OGUy" rel="nofollow noopener noreferrer">ML Underhood</a><div class="media"><video controls preload="metadata" src="../../assets/media/77_IMG_6133.MP4.mp4"></video></div></div>
+      <div class="actions">
+        <span>3 326 просмотров · 25 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/77" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../page-3.html">К списку постов</a> · <a href="./77.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link" href="./78.html" style="visibility:visible">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./71.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 77, "media": [{"kind": "video", "path": "../../assets/media/77_IMG_6133.MP4.mp4", "thumb": null, "size": 9714619, "mime": "video/mp4", "name": "IMG_6133.MP4"}]}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLUnderhood", "last_sync_utc": "2026-02-03T14:46:45Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 272, "updated": 0, "media_downloaded": 241}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>

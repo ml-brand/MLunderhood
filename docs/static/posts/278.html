@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #278</title>
+  <meta name="description" content=" Back to EMNLP: мировые тренды в области оценки качества перевода   Мы уже кратко писали о статьях исследователей Яндекса, которые в 2025 году представили на конференции Empirical Methods in Natural L" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/278.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #278" />
+  <meta property="og:description" content=" Back to EMNLP: мировые тренды в области оценки качества перевода   Мы уже кратко писали о статьях исследователей Яндекса, которые в 2025 году представили на конференции Empirical Methods in Natural L" />
+  <meta property="og:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/278_480.webp" />
+  <meta property="og:image:alt" content="ML Underhood" />
+  <meta property="article:published_time" content="2026-02-03T14:03:07+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/278_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=278" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="278">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2026-02-03T14:03:07+00:00">2026-02-03 14:03 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Back to EMNLP: мировые тренды в области оценки качества перевода<br></strong><br>Мы уже кратко писали о статьях исследователей Яндекса, которые в 2025 году представили на конференции Empirical Methods in Natural Language Processing. Сегодня на Хабре <a href="https://habr.com/ru/companies/yandex/articles/991144/" rel="nofollow noopener noreferrer">вышел пост</a>, в котором руководитель команды аналитики перевода в Яндексе Катя Еникеева рассказала об этих работах более детально, а ещё поделилась новыми подходами в оценке качества перевода. <br><br>Зовём читать полную статью и делимся интересными трендами, замеченными Катей на конференции. <br><br><strong>1. Новые мультиязычные бенчмарки: BOUQuET</strong><br><strong><br></strong>Одним из заметных стендов был <a href="https://arxiv.org/abs/2502.04314v2" rel="nofollow noopener noreferrer">BOUQuET</a> — новый мультиязычный бенчмарк от FAIR. Вместо готовых англоязычных текстов авторы попросили носителей восьми языков придумать собственные примеры из разных жизненных ситуаций, покрывающие определённые лингвистические явления. На каждый язык пришлось по 250 примеров, а всего их в наборе — 2 тысячи. Датасет сделали открытым и развивающимся: вместе с гайдлайнами он выложен на <a href="https://bouquet.metademolab.com/" rel="nofollow noopener noreferrer">платформу</a>, где можно постепенно добавлять переводы на новые языки.<br><br><strong>2. Датасеты для малоресурсных языков: SMOL</strong><br><strong><br></strong>Ещё один крупный мультиязычный датасет — <a href="https://arxiv.org/abs/2502.12301v2" rel="nofollow noopener noreferrer">SMOL</a> от Google Research/DeepMind и нескольких университетов. В отличие от BOUQuET, это обучающий корпус для малоресурсных языков. Авторы показали, что дообучение Gemini 2.0 Flash на этом корпусе даёт особенно большие приросты именно на малоресурсных направлениях.<br><br><strong>3. Word-level Quality Estimation и помощь переводчикам</strong><br><strong><br></strong>Несколько работ были посвящены оценке качества перевода на уровне слов и тому, как такие методы влияют на постредактирование. Например, <a href="https://arxiv.org/abs/2503.03044v2" rel="nofollow noopener noreferrer">QE4PE</a> исследует способы подсветить потенциальные фрагменты для исправлений и влияние «подсветки» на скорость и качество работы переводчиков. В целом качество растёт благодаря редактуре, а сами способы подсветки существенной разницы не дают.<br><br><strong>4. Unsupervised QE и uncertainty-метрики</strong><br><br>Работа <a href="https://arxiv.org/abs/2505.23183" rel="nofollow noopener noreferrer">Unsupervised Word-level Quality Estimation Through the Lens of Annotators’ (Dis)agreement</a> рассматривает оценку качества перевода на уровне токенов без обучения на человеческой разметке. Авторы попробовали использовать разные варианты uncertainty: surprisal, entropy и KL-дивергенции на промежуточных слоях. Выяснилось, что unsupervised-методы работают лишь немного хуже supervised-подходов, а перекрывающаяся человеческая разметка даёт более стабильное ранжирование автоматических метрик по качеству.<br><br><strong>5. Проверка лингвистического рассуждения LLM</strong><br><strong><br></strong>Отдельный сюжет — попытка оценить, насколько LLM способны к настоящему лингвистическому рассуждению. В работе <a href="https://arxiv.org/abs/2511.00343" rel="nofollow noopener noreferrer">LingGym</a> авторы предлагают бенчмарк для проверки, умеют ли модели восстанавливать пропущенную информацию в описании малоресурсных языков. Результаты оказались довольно суровыми: chain-of-thought почти не даёт прироста, и для таких задач нужны более специализированные механизмы.<br><br><strong>6. MT literacy и доверчивость пользователей</strong><br><strong><br></strong>Работа <a href="https://arxiv.org/abs/2510.09994" rel="nofollow noopener noreferrer">Toward Machine Translation Literacy</a> исследует, как пользователи с разным уровнем владения языком воспринимают ошибки перевода. Люди, не знающие исходного языка, часто пропускают даже очевидные сбои и оказываются слишком доверчивы к машинному переводу. Авторы делают вывод, что таким пользователям нужны дополнительные интерфейсные подсказки и развитие MT literacy.<br><br><a href="https://t.me/MLunderhood" rel="nofollow noopener noreferrer">ML Underhood</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/278_480.webp" srcset="../../assets/media/thumbs/278_480.webp 480w, ../../assets/media/278.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="278" data-image-index="0" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/279_480.webp" srcset="../../assets/media/thumbs/279_480.webp 480w, ../../assets/media/279.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="278" data-image-index="1" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/280_480.webp" srcset="../../assets/media/thumbs/280_480.webp 480w, ../../assets/media/280.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="278" data-image-index="2" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/281_480.webp" srcset="../../assets/media/thumbs/281_480.webp 480w, ../../assets/media/281.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="278" data-image-index="3" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/282_480.webp" srcset="../../assets/media/thumbs/282_480.webp 480w, ../../assets/media/282.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="278" data-image-index="4" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/283_480.webp" srcset="../../assets/media/thumbs/283_480.webp 480w, ../../assets/media/283.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="278" data-image-index="5" /></div></div>
+      <div class="actions">
+        <span>281 просмотров · 21 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/278" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./278.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link disabled" href="#" style="visibility:hidden">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./277.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 278, "media": [{"kind": "photo", "path": "../../assets/media/278.jpg", "thumb": "../../assets/media/thumbs/278_480.webp", "size": 36359, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/279.jpg", "thumb": "../../assets/media/thumbs/279_480.webp", "size": 112573, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/280.jpg", "thumb": "../../assets/media/thumbs/280_480.webp", "size": 105998, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/281.jpg", "thumb": "../../assets/media/thumbs/281_480.webp", "size": 96980, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/282.jpg", "thumb": "../../assets/media/thumbs/282_480.webp", "size": 104863, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/283.jpg", "thumb": "../../assets/media/thumbs/283_480.webp", "size": 62113, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLUnderhood", "last_sync_utc": "2026-02-03T14:46:45Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 272, "updated": 0, "media_downloaded": 241}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>
