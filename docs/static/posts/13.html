@@ -59,7 +59,7 @@
       </div>
       <div class="post-body"><strong>Как мы работали над YaFSDP</strong><br><br>Недавно запустилась библиотека YaFDP, которая ускоряет обучение больших языковых моделей. Подробнее о ней можно почитать <a href="https://habr.com/en/companies/yandex/articles/817509/" rel="nofollow noopener noreferrer">в статье на Хабре</a>. А сегодня руководитель группы претрейна YandexGPT Михаил Хрущев ответил на несколько наших вопросов о том, как создавалась библиотека. <br><br><strong>Когда и как началась работа над YaFSDP?</strong><br><br>За 2 недели до Нового года в 2023-м. К концу года стало ясно, что некоторые наши оптимизации не дают ускорения, которого мы ожидали. Я пошёл искать причины такого и нашел праздничную «ёлочку».<br><br><strong>Ориентировались ли на существующие решения? Были ли какие-то референсы, может?</strong><br><br>Сам алгоритм предложили в статье <a href="https://arxiv.org/abs/1910.02054" rel="nofollow noopener noreferrer">ZeRO: Memory Optimizations Toward Training Trillion Parameter Models</a>. Его реализация была также представлена в фреймворке DeepSpeed. К сожалению, она не очень масштабировалась и содержала много багов. Другая реализация, FSDP, сильно лучше, но и там есть проблемы с аллокацией памяти и коммуникациями. Поэтому я начал разрабатывать свою реализацию, к которой впоследствии подключились и другие ребята из моей команды.<br><br><strong>Какие трудности возникали во время работы? </strong><br><br>Было несколько технических трудностей. Вообще, от начала реализации до выкатки в обучение прошло чуть более месяца — разработка была более или менее гладкой. Самым сложным было продумать идею реализации, на это потребовалось больше месяца. <br><br>Здесь труднее всего было реализовать кода, который должен исполняться сразу после backward (обратного распространения ошибки) по слою. Я неожиданно столкнулся с тем, что torch (фреймворк глубокого обучения) совсем не приспособлен для такой хитрой логики. Но решение тем не менее нашлось.<br><br>На этом на сегодня все. Рассказывайте о своём опыте работы с LLM в комментариях! <br><br><a href="https://t.me/+piLRT29FdjRiZmQy" rel="nofollow noopener noreferrer">ML Underhood</a></div>
       <div class="actions">
-        <span>5 880 просмотров · 30 реакций</span>
+        <span>5 883 просмотров · 30 реакций</span>
         <span class="action-links"><a href="https://t.me/MLunderhood/13" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../page-4.html">К списку постов</a> · <a href="./13.html">Ссылка на этот пост</a></span>
       </div>
     </article>
@@ -86,7 +86,7 @@
 
   <script>
     window.__STATIC_POSTS = [{"id": 13, "media": []}];
-    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLUnderhood", "last_sync_utc": "2026-02-03T14:46:45Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 272, "updated": 0, "media_downloaded": 241}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLunderhood", "last_sync_utc": "2026-02-09T14:35:20Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 161, "updated": 80, "media_downloaded": 161}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
   </script>
   <script src="../../common.js"></script>
   <script src="../../static.js"></script>

@@ -59,7 +59,7 @@
       </div>
       <div class="post-body"><strong>Как Алиса видит мир</strong><br><br>Недавно Алиса научилась распознавать объекты, показанные через камеру смартфона. В основе этой фичи лежит мультимодальная нейросеть (Visual Language Model, VLM), которая уже используется в Поиске по картинкам, Умной камере и Нейроэксперте. На Хабре <a href="https://habr.com/ru/companies/yandex/articles/904584/" rel="nofollow noopener noreferrer">вышла большая статья</a> о том, как создавали эту модель, а здесь мы кратко расскажем главное. <br><br>VLM основана на семействе YandexGPT 5. Она состоит из LLM и картиночного энкодера. VLM получает на вход изображение и произвольную текстовую инструкцию и предсказывает текст — ответ на пользовательский запрос.<br><br>Датасет для претрейна мультимодальной модели состоял из документов, содержащих изображения, текстовых документов, пар «картинка-текст» и OCR-данных. Далее в обучении шла стадия SFT, а за ней — DPO. <br><br>VLM адаптировали в Алисы. Её зрение работает в двух режимах: можно загрузить изображение в чат, а можно включить камеру и показывать ассистенту то, что вы видите. Когда Алиса получает изображение и запрос, последний отправляется в рефразер, который адаптирует вопрос для поиска в интернете. Например, если пользователь просто показывает Алисе булгур и спрашивает «Сколько варить?», рефразер превращает вопрос в «сколько варить булгур».<br><br>Далее запрос отправляется в интернет. Модель собирает всю нужную информацию и выдаёт пользователю ответ (15 минут, если что).  <br><br>А более подробно о том, как устроена VLM, а также об экспериментах и трудностях, которые возникали по ходу обучения, <a href="https://habr.com/ru/companies/yandex/articles/904584/" rel="nofollow noopener noreferrer">читайте на Хабре. </a><br><br><a href="https://t.me/+yaGEbJ4stulhZmYy" rel="nofollow noopener noreferrer">ML Underhood</a></div>
       <div class="actions">
-        <span>2 585 просмотров · 17 реакций</span>
+        <span>2 586 просмотров · 17 реакций</span>
         <span class="action-links"><a href="https://t.me/MLunderhood/109" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../page-2.html">К списку постов</a> · <a href="./109.html">Ссылка на этот пост</a></span>
       </div>
     </article>
@@ -86,7 +86,7 @@
 
   <script>
     window.__STATIC_POSTS = [{"id": 109, "media": []}];
-    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLUnderhood", "last_sync_utc": "2026-02-03T14:46:45Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 272, "updated": 0, "media_downloaded": 241}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLunderhood", "last_sync_utc": "2026-02-09T14:35:20Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 161, "updated": 80, "media_downloaded": 161}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
   </script>
   <script src="../../common.js"></script>
   <script src="../../static.js"></script>
