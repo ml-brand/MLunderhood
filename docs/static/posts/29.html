@@ -59,7 +59,7 @@
       </div>
       <div class="post-body"><strong>PPO для YandexGPT 4 Lite </strong><br><br>Недавно инженеры Яндекса использовали онлайн-обучение с подкреплением для YandexGPT 4 Lite. На файнтюне этой модели использовались как DPO, так и PPO. Павел Темирчев, один из разработчиков команды алаймента Яндекса, рассказал нам, как внедряли эти методы. <br><br>Proximal Policy Optimization (PPO) — метод, который предполагает применение размеченных асессорами данных для обучения reward-модели. Это итеративный и весьма трудоёмкий процесс. Сложность, в частности, заключается в том, что модель должна прямо во время обучения генерировать ответы. Кроме того, необходимо хранить в памяти GPU не только обучаемую, но и ряд вспомогательных моделей. Например, value-модель, которая содержит информацию о наградах и используется в алгоритме как бейзлайн. <br><br>Важной частью внедрения PPO для обучения YandexGPT 4 Lite стало создание правильной инфраструктуры — от этого зависит примерно 50% успеха. Кроме того, была проведена большая работа с обучающим множеством. Инженеры перебрали разные варианты того, на чём можно обучать модель. <br><br>Также было важно не дать модели переобучиться под reward-модель. Для этого существует практика штрафа, который накладывается, если обучаемая модель слишком далеко ушла от SFT. В Яндексе попробовали применить разные варианты штрафов, чтобы выбрать наиболее подходящий. <br><br>Из хаков использовали, например, нормализацию advantage, то есть разницы награды за ответ и средней награды. Этот трюк позволяет получить более стабильную сходимость взамен теоретических гарантий. <br><br>На алайменте YandexGPT 4 Lite проводили сперва онлайн RL — PPO, а затем DPO. Комбинация методов позволила получить хорошие результаты, которые превосходят полученные от каждого метода отдельно. <br><br>Делитесь своими мыслями о PPO и DPO в комментариях!<br><br><a href="https://t.me/+P64I66DXPLtkODEy" rel="nofollow noopener noreferrer">ML Underhood</a></div>
       <div class="actions">
-        <span>2 551 просмотров · 23 реакций</span>
+        <span>2 552 просмотров · 23 реакций</span>
         <span class="action-links"><a href="https://t.me/MLunderhood/29" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../page-4.html">К списку постов</a> · <a href="./29.html">Ссылка на этот пост</a></span>
       </div>
     </article>
@@ -86,7 +86,7 @@
 
   <script>
     window.__STATIC_POSTS = [{"id": 29, "media": []}];
-    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLunderhood", "last_sync_utc": "2026-02-16T09:37:48Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 161, "updated": 8, "media_downloaded": 161}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLunderhood", "last_sync_utc": "2026-02-16T10:35:00Z", "posts_count": 111, "last_seen_message_id": 283, "stats": {"new": 161, "updated": 21, "media_downloaded": 161}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
   </script>
   <script src="../../common.js"></script>
   <script src="../../static.js"></script>
