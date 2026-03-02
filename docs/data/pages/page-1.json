@@ -92,7 +92,7 @@
     "html": "<strong>Статьи Yandex Research на грядущей ICLR — 1/2</strong><br><br>Интересный факт: в фильме «Бразилия» не очень-то много о Бразилии. Зато о ней будет в нашем канале, когда мы возьмёмся освещать конференцию ICLR 2026. Она пройдёт уже в апреле в Рио-де-Жанейро. Туда отправляются исследователи Yandex Research — и не с пустыми руками, а с целой пачкой в шесть статей. Сперва расскажем о первых трёх.<br><br><a href=\"https://arxiv.org/abs/2509.23202\" rel=\"nofollow noopener noreferrer\"><strong>Bridging the Gap Between Promise and Performance for Microscaling FP4 Quantization</strong></a><br><br>Авторы статьи — Денис Кузнеделев из Yandex Research и коллеги из ISTA, Red Hat AI и ETH Zürich. Они детально изучили представленные компанией NVIDIA форматы хранения весов и активаций (MXFP4, NVFP4) для квантования после обучения, чтобы понять, насколько заявленные преимущества соответствуют реальной производительности.<br>Анализ показал, что современные методы сталкиваются с трудностями при работе с FP4. Причины:<br><br>— привычные способы борьбы с выбросами (нетипичными значениями) не работают;<br>— при квантовании MXFP4 возникает ошибка.<br><br>В работе предложена улучшенная версия алгоритма квантования GPTQ. Она учитывает особенности FP4 и заметно повышает точность по сравнению с предыдущими методами. Кроме того, разработаны быстрые ядра для инференса.<br><br><a href=\"https://arxiv.org/abs/2503.16397\" rel=\"nofollow noopener noreferrer\"><strong>Scale-wise Distillation of Diffusion Models</strong></a><br><br>А это статья уже полностью от Yandex Research — Никиты Стародубцева, Дениса Кузнеделева, Артёма Бабенко и Дмитрия Баранчука. Авторы предлагают новый подход к помасштабной дистилляции диффузионных моделей —  дообучать генерации изображений прогрессивно, от низкого разрешения к высокому. Это позволяет добиться более высокого качества, чем во время генерации с фиксированным разрешением при том же вычислительном бюджете. <br><br><a href=\"https://arxiv.org/abs/2507.09823\" rel=\"nofollow noopener noreferrer\"><strong>Nesterov Finds GRAAL: Optimal and Adaptive Gradient Method for Convex Optimization</strong></a><br><br>Авторы статьи — Екатерина Бородич и Дмитрий Ковалев из Yandex Research — разработали ускоренный по Нестерову и не требующий подбора гиперпараметров градиентный метод, который автоматически адаптирует размер шага к локальной кривизне целевой функции с линейной (геометрической) скоростью. Эффективность алгоритма подтвердили, доказав, что он даёт оптимальную скорость сходимости для выпуклых задач оптимизации в условиях обобщенной гладкости.<br><br>#YaICLR26<br><br><a href=\"https://t.me/+0BRPcgoPgvdhZDEy\" rel=\"nofollow noopener noreferrer\">ML Underhood</a>",
     "link": "https://t.me/MLunderhood/284",
     "type": "text",
-    "views": 1050,
+    "views": 1051,
     "forwards": 6,
     "grouped_id": null,
     "media": [],
@@ -2884,7 +2884,7 @@
     "html": "<strong>Впечатления от ICLR 2025</strong><br><br>Подводим итоги конференции вместе с инженерами Яндекса. Сегодня о своих впечатлениях от ICLR в этих карточках и <a href=\"https://telegra.ph/sfs-06-30-3\" rel=\"nofollow noopener noreferrer\">одной секретной</a> поделится руководитель Cloud AI/ML Services Yandex Cloud Василий Ершов. <br><br><a href=\"https://t.me/+6-c8oKONtxdlMjZi\" rel=\"nofollow noopener noreferrer\">ML Underhood</a>",
     "link": "https://t.me/MLunderhood/124",
     "type": "photo",
-    "views": 5651,
+    "views": 5652,
     "forwards": 9,
     "grouped_id": 14010265889252922,
     "media": [
