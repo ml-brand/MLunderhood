@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #297</title>
+  <meta name="description" content=" Долгое бодрствование агентов — как мы построили платформу Agent Transport System для Алисы AI   Агент «Исследовать», о котором мы  писали  ранее, должен быть устойчивым к непредвиденным ситуациям. Со" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/297.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #297" />
+  <meta property="og:description" content=" Долгое бодрствование агентов — как мы построили платформу Agent Transport System для Алисы AI   Агент «Исследовать», о котором мы  писали  ранее, должен быть устойчивым к непредвиденным ситуациям. Со" />
+  <meta property="og:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/297_480.webp" />
+  <meta property="og:image:alt" content="ML Underhood" />
+  <meta property="article:published_time" content="2026-04-10T11:21:26+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/297_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=297" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="297">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2026-04-10T11:21:26+00:00">2026-04-10 11:21 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Долгое бодрствование агентов — как мы построили платформу Agent Transport System для Алисы AI</strong><br><br>Агент «Исследовать», о котором мы <a href="https://t.me/MLunderhood/296" rel="nofollow noopener noreferrer">писали</a> ранее, должен быть устойчивым к непредвиденным ситуациям. Собственно, исследование — процесс комплексный,  требующий проанализировать несколько источников, вызвать разные инструменты и запустить модели. Если где-то что-то упадёт, то всё придется начинать сначала. Чтобы этого не происходило, в Яндексе использовали платформу Agent Transport System (ATS). О ней <a href="https://habr.com/ru/companies/yandex/articles/1020282/" rel="nofollow noopener noreferrer">на Хабре</a> рассказал Алексей Логинов, ведущий разработчик в команде, которая отвечает за инфраструктуру Алисы AI. Кратко выделим главное.<br><br>Сперва агентский режим ассистента реализовали на <a href="https://github.com/openai/openai-agents-python" rel="nofollow noopener noreferrer">OpenAI Agents SDK</a>. Это работало, но стейты выполнения хранились локально, а при любых сбоях приходилось начинать всё заново. Нужно было найти такое решение, которое позволяло бы продолжать работу именно из состояния до падения. Кроме того, хорошо бы иметь под капотом распределённое выполнение, чтобы агенты и тулы взаимодействовали друг с другом, находясь на разных хостах.<br><br>Для построения отказоустойчивых систем хорошо подходит фреймворк Temporal. Он оперирует двумя типами сущностей: workflow (объект с состоянием, который описывает последовательность шагов) и activity (функции, которые вызываются из workflow). Фреймворк фиксирурет решения, принятые workflow, и результаты завершённых activity. В случае падения Temporal восстанавливает выполнение, не вызывая уже сделанные activity. <br><br>Однако Temporal не умеет в стриминг, а агенту было бы хорошо выдавать ответы пользователю по мере их получения. К тому же агенты, написанные на Temporal, привязываются к Temporal SDK, что может быть не слишком удобно в случае «переезда» в будущем.<br><br>Поэтому Temporal взяли как основу для надёжности, а уже на фреймворке построили центральный сервер платформы — ATS, чьи протоколы и реализуют агенты. ATS также берёт на себя, например, оркестрацию и транспортировку данных и событий между агентами, тулами и моделями на разных хостах. В итоге схема работы выглядит так: <br><br>1. Клиент отправляет запрос в ATS.<br>2. ATS делает запрос в Temporal на запуск workflow. Temporal запускает workflow.<br>3. Workflow делает запрос в Temporal на запуск activity корневого агента. Temporal запускает activity корневого агента.<br>4. Activity корневого агента поднимает двунаправленный gRPC-стрим к сервису агента.<br>5. Если агенту нужно вызвать модель / инструмент / дочернего агента — он просит ATS, ATS сообщает workflow о необходимости запустить activity (signal/update).<br>6. Workflow запускает соответствующую activity.<br>7. Activity поднимает двунаправленный gRPC-стрим к сервису.<br>8. Все activity одного workflow общаются между собой через in-memory-очереди от дочернего activity к родительскому — так чанки данных передаются в реальном времени.<br>9. Корневой агент пишет свои чанки во внешний стриминговый сервис — пользователь видит ответ по мере выполнения.<br>10. Завершённые activity возвращают результаты workflow — Temporal сохраняет их.<br><br>В случае сбоя ATS начинает взаимодействовать с агентом заново. Когда агент просит вызвать инструмент, модель или дочернего агента, ATS проверяет, есть ли в хранилище какой-то результат работы по этому запросу с прошлого раза. Если да, то агент получает результат и шаг за шагом «перематывается вперёд» до состояния, в котором он был до сбоя, без повторных вызовов тяжёлых LLM и инструментов.<br><br>А подробнее о том, как всё устроено, читайте <a href="https://habr.com/ru/companies/yandex/articles/1020282/" rel="nofollow noopener noreferrer">на Хабре</a>. <br><br><a href="https://t.me/MLunderhood" rel="nofollow noopener noreferrer">ML Underhood</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/297_480.webp" srcset="../../assets/media/thumbs/297_480.webp 480w, ../../assets/media/297.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="297" data-image-index="0" /></div></div>
+      <div class="actions">
+        <span>219 просмотров · 21 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/297" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./297.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link disabled" href="#" style="visibility:hidden">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./296.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 297, "media": [{"kind": "photo", "path": "../../assets/media/297.jpg", "thumb": "../../assets/media/thumbs/297_480.webp", "size": 64182, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLunderhood", "last_sync_utc": "2026-04-10T11:34:53Z", "posts_count": 122, "last_seen_message_id": 297, "stats": {"new": 165, "updated": 24, "media_downloaded": 165}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>
