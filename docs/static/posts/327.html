@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #327</title>
+  <meta name="description" content=" Постеры — хорошо, а что там на оралах?   А там — не менее интересно. Несём несколько обзоров, сделанных по горячим следам выступлений.    Is it Thinking or Cheating? Detecting Implicit Reward Hacking" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/327.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #327" />
+  <meta property="og:description" content=" Постеры — хорошо, а что там на оралах?   А там — не менее интересно. Несём несколько обзоров, сделанных по горячим следам выступлений.    Is it Thinking or Cheating? Detecting Implicit Reward Hacking" />
+  <meta property="og:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/327_480.webp" />
+  <meta property="og:image:alt" content="ML Underhood" />
+  <meta property="article:published_time" content="2026-04-27T08:02:02+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/327_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=327" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="327">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2026-04-27T08:02:02+00:00">2026-04-27 08:02 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Постеры — хорошо, а что там на оралах?<br></strong><br>А там — не менее интересно. Несём несколько обзоров, сделанных по горячим следам выступлений.<br><br><a href="https://iclr.cc/virtual/2026/oral/10010464" rel="nofollow noopener noreferrer"><strong>Is it Thinking or Cheating? Detecting Implicit Reward Hacking by Measuring Reasoning Effort<br></strong></a><br>Работа о скрытом взломе награды у ризонинг-моделей. Идея: модель может получать высокий reward не потому, что честно решает задачу, а потому что эксплуатирует «лазейку».<br><br>Авторы рассматривают два типа loophole:<br>1) лазейка в контексте — утёк нужный сигнал или ответ;<br>2) лазейка в проверке награды — сам verifier / reward можно обмануть.<br><br>Признак такого поведения — когда модель проходит задачу только при наличии лазейки, а без неё разваливается.<br><br>Для детекции предлагают TRACE: обрезают цепочку рассуждений на разных процентах, форсят ранний ответ и смотрят, как рано модель может получать высокий reward. Если reward высокий уже при раннем обрыве, значит ответ, скорее всего, найден через shortcut, а остальная цепочка рассуждений декоративная.<br><br>По результатам TRACE — лучше обычного мониторинга по цепочке рассуждений и лучше ловит такие случаи в задачах по математике и коду.<br><br><a href="https://iclr.cc/virtual/2026/oral/10011092" rel="nofollow noopener noreferrer"><strong>Gaia2: Benchmarking LLM Agents on Dynamic and Asynchronous Environments<br></strong></a><br>Meta* обновила популярный бенч Gaia. Новая версия Gaia2 оценивает агентов в динамической и асинхронной среде, а не в статичных задачах вида «запрос -&gt; ответ». Теперь задача — это полноценный сценарий с течением времени, событиями и изменяемым состоянием (приложения, уведомления, ответы пользователей), где агент должен планировать, ждать и адаптироваться.<br><br>Оценка тоже другая: вместо финального ответа смотрят на последовательность действий агента. Учитываются только действия, которые меняют состояние, и они сравниваются с эталонным графом действий (oracle DAG). Проверяется правильность шагов, порядок, тайминг и полнота выполнения. Это позволяет измерять не текст, а реальное поведение агента в длинных сценариях с инструментами и событиями.<br><br><a href="https://iclr.cc/virtual/2026/oral/10009352" rel="nofollow noopener noreferrer"><strong>How Learning Rate Decay Wastes Your Best Data in Curriculum-Based LLM Pretraining<br></strong></a><br>Авторы рассуждают о проблеме curriculum learning для LLM: если модель видит более качественные данные ближе к концу обучения, стандартный learning rate decay может почти «обнулить» пользу от этих данных. То есть лучшие данные приходят поздно, но именно в этот момент learning rate уже слишком мал. В итоге модель получает более чистый сигнал, но почти не способна существенно обновиться.<br><br>Как решение предлагают Curriculum Model Averaging (CMA): сохранить более высокий learning rate на поздней стадии, а шум и нестабильность компенсировать усреднением последних чекпоинтов. Такой подход позволяет продолжать извлекать пользу из качественных данных и одновременно снижать variance финальной модели. Как результат, одна только curriculum-стратегия не помогает, один только model averaging тоже не помогает. Но их комбинация даёт прирост.<br><br><em>Послушали и записали</em> <tg-emoji emoji-id="5224192932302565805">❣</tg-emoji> <em>Даниил Беликов и Ярослав Ведерников</em><br><br>#YaICLR26<br><br><a href="https://t.me/MLunderhood" rel="nofollow noopener noreferrer">ML Underhood</a><br>__<br><em>Компания Meta признана экстремистской; её деятельность в России запрещена.</em><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/327_480.webp" srcset="../../assets/media/thumbs/327_480.webp 480w, ../../assets/media/327.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="327" data-image-index="0" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/328_480.webp" srcset="../../assets/media/thumbs/328_480.webp 480w, ../../assets/media/328.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="327" data-image-index="1" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/329_480.webp" srcset="../../assets/media/thumbs/329_480.webp 480w, ../../assets/media/329.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="327" data-image-index="2" /></div></div>
+      <div class="actions">
+        <span>396 просмотров · 22 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/327" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./327.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link disabled" href="#" style="visibility:hidden">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./320.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 327, "media": [{"kind": "photo", "path": "../../assets/media/327.jpg", "thumb": "../../assets/media/thumbs/327_480.webp", "size": 97380, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/328.jpg", "thumb": "../../assets/media/thumbs/328_480.webp", "size": 89583, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/329.jpg", "thumb": "../../assets/media/thumbs/329_480.webp", "size": 129783, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLunderhood", "last_sync_utc": "2026-04-27T10:48:47Z", "posts_count": 130, "last_seen_message_id": 329, "stats": {"new": 189, "updated": 41, "media_downloaded": 189}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>
