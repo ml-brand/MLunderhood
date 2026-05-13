@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #340</title>
+  <meta name="description" content=" Немного о погоде в Рио   Вернее, не в Рио, а на прошедшей ICLR. И не то чтобы о погоде — о статьях, связанных с её прогнозированием. Руководитель группы ML в Яндекс Погоде Пётр Вытовтов поделился мыс" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/340.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #340" />
+  <meta property="og:description" content=" Немного о погоде в Рио   Вернее, не в Рио, а на прошедшей ICLR. И не то чтобы о погоде — о статьях, связанных с её прогнозированием. Руководитель группы ML в Яндекс Погоде Пётр Вытовтов поделился мыс" />
+  <meta property="og:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/340_480.webp" />
+  <meta property="og:image:alt" content="ML Underhood" />
+  <meta property="article:published_time" content="2026-05-13T13:04:51+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/340_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=340" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="340">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2026-05-13T13:04:51+00:00">2026-05-13 13:04 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Немного о погоде в Рио</strong><br><br>Вернее, не в Рио, а на прошедшей ICLR. И не то чтобы о погоде — о статьях, связанных с её прогнозированием. Руководитель группы ML в Яндекс Погоде Пётр Вытовтов поделился мыслями о трендах и занятными публикациями на тему. Слово Петру. <br><br><blockquote>Первое, что я заметил, ещё до приезда в Рио, что в этом году на ICLR было заметно больше погодных работ, чем раньше. С одной стороны, это хорошо, что область погодного ML развивается. С другой — конкуренция растёт, и надо постоянно больше и качественнее работать, чтобы успевать за отраслью и сохранять лидирующие позиции. Основная масса работ была по двум направлениям: foundation-погодные модели и наукаст.</blockquote><br><br>А теперь к самим статьям.<br><br><blockquote><a href="https://arxiv.org/abs/2509.22020" rel="nofollow noopener noreferrer"><strong>Task-Adaptive Parameter-Efficient Fine-Tuning for Weather Foundation Models</strong></a><br><br>Есть такое направление, как тюнинг fountation-погодных моделей под различные downstream-задачи. Это связано с тем, что для финальной решаемой задачи не всегда необходимо моделировать с хорошим качеством всю атмосферу, но при этом всё-таки хочется учитывать эту информацию. Поэтому можно подтюнить модель под необходимый параметр и немного принебречь качеством остальных.<br><br>Здесь авторы предлагают не тюнить модель целиком, а использовать, так называемый, обучаемый soft prompt, чтобы говорить модели, какую именно задачу она должна сейчас решать. Утверждается, что модель хорошо учится с ним работать. Авторы проверяли работу своего подхода поверх модели Aurora от Microsoft и получили хорошие результаты для задач super-resolution, прогноза осадков и постпроцессинга ансамблевых прогнозов.<br><br>Идейно подход выглядит интересно, но пока он проверялся только на грубом разрешении сетки, и не совсем понятно как этот подход себя покажет на продовых моделях.<br><br><a href="https://arxiv.org/abs/2602.05204" rel="nofollow noopener noreferrer"><strong>Extreme Weather Nowcasting via Local Precipitation Pattern Prediction</strong></a><br><br>Если рассматривать наукаст, как задачу перемещения существующих осадков, то она — по большей части — уже решена. Но есть две открытых проблемы в этой области: возникновение новых осадков и прогноз экстремальных значений. Здесь авторы концентрируются на второй подзадаче.<br><br>Они делают предположение, что одна из причин плохого восстановления сильных осадков — структура декодера, и предлагают его модификацию. При этом в работе сравнивают разные варианты того, как можно делать апсемплинг картинки в процессе декодирования. Интересно, что авторы — одни из немногих, у которых Фурье-лосс для задачи наукаста заработал лучше стандартно используемых MSE и MAE.<br><br>Авторы проверялись на стандартных датасетах SEVIR и MeteoNet, а также на их собственном KMA, который должен быть публично доступен. Не во всех сетапах удалось получить SotA, но картинки выглядят заметно чётче по сравнению с аналогами. </blockquote><br><br>#YaICLR26<br><br><a href="https://t.me/+aM35F9BRxERiNWNi" rel="nofollow noopener noreferrer">ML Underhood</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/340_480.webp" srcset="../../assets/media/thumbs/340_480.webp 480w, ../../assets/media/340.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="340" data-image-index="0" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/341_480.webp" srcset="../../assets/media/thumbs/341_480.webp 480w, ../../assets/media/341.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="340" data-image-index="1" /></div></div>
+      <div class="actions">
+        <span>423 просмотров · 6 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/340" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./340.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link disabled" href="#" style="visibility:hidden">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./337.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 340, "media": [{"kind": "photo", "path": "../../assets/media/340.jpg", "thumb": "../../assets/media/thumbs/340_480.webp", "size": 98602, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/341.jpg", "thumb": "../../assets/media/thumbs/341_480.webp", "size": 101234, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLunderhood", "last_sync_utc": "2026-05-13T13:54:19Z", "posts_count": 134, "last_seen_message_id": 341, "stats": {"new": 196, "updated": 20, "media_downloaded": 196}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>
