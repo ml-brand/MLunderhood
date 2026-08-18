@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="../../style.css" />
   <script src="../../metrika.js"></script>
 </head>
-<body data-index-href="../page-5.html">
+<body data-index-href="../page-6.html">
   <header class="header">
     <div class="container">
       <div class="title-grid single-title">
@@ -30,7 +30,7 @@
         </a>
         <div class="grid-main">
           <div class="title-head">
-            <a class="back-link" href="../page-5.html">← Ко всем постам</a>
+            <a class="back-link" href="../page-6.html">← Ко всем постам</a>
             <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
             <div class="hero-actions">
               <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
@@ -60,7 +60,7 @@
       <div class="post-body"><strong>Как мы работали над YaFSDP</strong><br><br>Недавно запустилась библиотека YaFDP, которая ускоряет обучение больших языковых моделей. Подробнее о ней можно почитать <a href="https://habr.com/en/companies/yandex/articles/817509/" rel="nofollow noopener noreferrer">в статье на Хабре</a>. А сегодня руководитель группы претрейна YandexGPT Михаил Хрущев ответил на несколько наших вопросов о том, как создавалась библиотека. <br><br><strong>Когда и как началась работа над YaFSDP?</strong><br><br>За 2 недели до Нового года в 2023-м. К концу года стало ясно, что некоторые наши оптимизации не дают ускорения, которого мы ожидали. Я пошёл искать причины такого и нашел праздничную «ёлочку».<br><br><strong>Ориентировались ли на существующие решения? Были ли какие-то референсы, может?</strong><br><br>Сам алгоритм предложили в статье <a href="https://arxiv.org/abs/1910.02054" rel="nofollow noopener noreferrer">ZeRO: Memory Optimizations Toward Training Trillion Parameter Models</a>. Его реализация была также представлена в фреймворке DeepSpeed. К сожалению, она не очень масштабировалась и содержала много багов. Другая реализация, FSDP, сильно лучше, но и там есть проблемы с аллокацией памяти и коммуникациями. Поэтому я начал разрабатывать свою реализацию, к которой впоследствии подключились и другие ребята из моей команды.<br><br><strong>Какие трудности возникали во время работы? </strong><br><br>Было несколько технических трудностей. Вообще, от начала реализации до выкатки в обучение прошло чуть более месяца — разработка была более или менее гладкой. Самым сложным было продумать идею реализации, на это потребовалось больше месяца. <br><br>Здесь труднее всего было реализовать кода, который должен исполняться сразу после backward (обратного распространения ошибки) по слою. Я неожиданно столкнулся с тем, что torch (фреймворк глубокого обучения) совсем не приспособлен для такой хитрой логики. Но решение тем не менее нашлось.<br><br>На этом на сегодня все. Рассказывайте о своём опыте работы с LLM в комментариях! <br><br><a href="https://t.me/+piLRT29FdjRiZmQy" rel="nofollow noopener noreferrer">ML Underhood</a></div>
       <div class="actions">
         <span>5 917 просмотров · 30 реакций</span>
-        <span class="action-links"><a href="https://t.me/MLunderhood/13" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../page-5.html">К списку постов</a> · <a href="./13.html">Ссылка на этот пост</a></span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/13" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../page-6.html">К списку постов</a> · <a href="./13.html">Ссылка на этот пост</a></span>
       </div>
     </article>
 
@@ -86,7 +86,7 @@
 
   <script>
     window.__STATIC_POSTS = [{"id": 13, "media": []}];
-    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLunderhood", "last_sync_utc": "2026-08-18T12:02:22Z", "posts_count": 156, "last_seen_message_id": 397, "stats": {"new": 229, "updated": 11, "media_downloaded": 229}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLunderhood", "last_sync_utc": "2026-08-18T13:31:32Z", "posts_count": 157, "last_seen_message_id": 403, "stats": {"new": 235, "updated": 28, "media_downloaded": 235}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
   </script>
   <script src="../../common.js"></script>
   <script src="../../static.js"></script>

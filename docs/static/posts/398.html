@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #398</title>
+  <meta name="description" content=" Фрод и безопасность на KDD: заметки с трёх треков   Продолжаем рассказывать о том, что было на KDD. В этот раз интересным поделится аналитик из группы внешних угроз и безопасности Владислав Альчиков." />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/398.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #398" />
+  <meta property="og:description" content=" Фрод и безопасность на KDD: заметки с трёх треков   Продолжаем рассказывать о том, что было на KDD. В этот раз интересным поделится аналитик из группы внешних угроз и безопасности Владислав Альчиков." />
+  <meta property="og:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/398_480.webp" />
+  <meta property="og:image:alt" content="ML Underhood" />
+  <meta property="article:published_time" content="2026-08-18T13:26:55+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/398_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=398" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="398">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2026-08-18T13:26:55+00:00">2026-08-18 13:26 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Фрод и безопасность на KDD: заметки с трёх треков</strong><br><br>Продолжаем рассказывать о том, что было на KDD. В этот раз интересным поделится аналитик из группы внешних угроз и безопасности Владислав Альчиков. Ему слово. <br><br>Помимо классических треков о рекомендательных системах и AI, в этом году на KDD заметно больше говорили об антифроде и безопасности ML и LLM. Причём как о полноценном отдельном направлении — с воркшопами, research-сессиями и попытками задать архитектурные стандарты. Ниже — о трёх треках, которые удалось послушать, и о том, что показалось важным.<br><br><strong>AI for Fraud and Abuse (AI-FA) </strong><br><br>Первый в истории KDD <a href="https://sites.google.com/view/kdd-fraud-abuse-2026/home" rel="nofollow noopener noreferrer">воркшоп целиком о фроде</a>. Организаторы — команда Safety из Google. Главный тезис воркшопа в том, что фрод перестал быть изолированной проблемой отдельных доменов — сегодня его всё чаще поддерживают автоматизированные агенты и кросс-платформенные генеративные ИИ-фреймворки. <br><br>Запомнились два доклада. Первый — о применении графовых foundation-моделей для транзакционного антифрода, где схемы мошенничества постоянно меняются. Второй — об LLM-аугментации обучающих датасетов без сбора новых реальных данных. Это даёт сразу два эффекта: проактивно закладывает в модель ещё не встречавшиеся сценарии фрода и частично снимает survivorship bias в разметке. Поскольку мы не видим тот фрод, который в своё время пропустили, и потому учимся на смещённой выборке.<br><br><strong>Research-трек Adversarial Attacks, Privacy &amp; Security</strong><br><br>Это шесть 20-минутных докладов об атаках и защите. Здесь выделю <a href="https://dl.acm.org/doi/10.1145/3770855.3818133" rel="nofollow noopener noreferrer">BRP (Block Revert Patch)</a> — query-efficient-атаку в decision-based black-box-сеттинге. Ключевая идея: оценивать успех атаки не только тем, удалось ли обмануть модель, но и тем, сколько запросов на это понадобилось. Это смещает фокус с «возможности атаки в принципе» на её практическую применимость.<br><br><strong>Trustworthy LLM — воркшоп в парадигме blue sky</strong><br><br>Здесь представили концепцию <a href="https://arxiv.org/abs/2605.19035" rel="nofollow noopener noreferrer">Trustworthy Agent Network (TAN)</a>. Основной посыл: безопасность мультиагентных систем нужно встраивать в архитектуру, а не «прикручивать» сверху постфактум-проверками и мониторингом. Авторы формулируют четыре базовых принципа, на основе которых планируют дальше выводить конкретные архитектуры и критерии проектирования для реальных мультиагентных систем.<br><br>Все три трека, при разной степени зрелости, бьют в одну точку: фрод и атаки на ML/LLM-системы становятся автоматизированными и агентными, а значит и защита должна становиться системной и встроенной. Будь то на уровне данных (LLM-аугментация), метрик атак (query-efficiency) или архитектуры целых мультиагентных сетей (TAN). Похоже, в следующем году эта тема на KDD станет ещё заметнее.<br><br>#YaKDD26<br><br><a href="https://t.me/MLunderhood" rel="nofollow noopener noreferrer">ML Underhood</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/398_480.webp" srcset="../../assets/media/thumbs/398_480.webp 480w, ../../assets/media/398.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="398" data-image-index="0" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/399_480.webp" srcset="../../assets/media/thumbs/399_480.webp 480w, ../../assets/media/399.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="398" data-image-index="1" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/400_480.webp" srcset="../../assets/media/thumbs/400_480.webp 480w, ../../assets/media/400.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="398" data-image-index="2" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/401_480.webp" srcset="../../assets/media/thumbs/401_480.webp 480w, ../../assets/media/401.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="398" data-image-index="3" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/402_480.webp" srcset="../../assets/media/thumbs/402_480.webp 480w, ../../assets/media/402.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="398" data-image-index="4" /><img class="media-img" loading="lazy" src="../../assets/media/thumbs/403_480.webp" srcset="../../assets/media/thumbs/403_480.webp 480w, ../../assets/media/403.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="398" data-image-index="5" /></div></div>
+      <div class="actions">
+        <span>119 просмотров · 7 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/398" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./398.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link disabled" href="#" style="visibility:hidden">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./393.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 398, "media": [{"kind": "photo", "path": "../../assets/media/398.jpg", "thumb": "../../assets/media/thumbs/398_480.webp", "size": 242407, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/399.jpg", "thumb": "../../assets/media/thumbs/399_480.webp", "size": 194572, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/400.jpg", "thumb": "../../assets/media/thumbs/400_480.webp", "size": 190207, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/401.jpg", "thumb": "../../assets/media/thumbs/401_480.webp", "size": 159513, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/402.jpg", "thumb": "../../assets/media/thumbs/402_480.webp", "size": 152451, "mime": "image/jpeg", "name": null}, {"kind": "photo", "path": "../../assets/media/403.jpg", "thumb": "../../assets/media/thumbs/403_480.webp", "size": 148285, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLunderhood", "last_sync_utc": "2026-08-18T13:31:32Z", "posts_count": 157, "last_seen_message_id": 403, "stats": {"new": 235, "updated": 28, "media_downloaded": 235}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>
