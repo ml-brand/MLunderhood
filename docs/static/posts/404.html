@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #404</title>
+  <meta name="description" content=" Финальные впечатления от ICML 2026 и любопытные исследования    Карина Романова , которая занимается LLM-агентами в Алисе, поделилась впечатлениями от ICML   на Хабре  . В тексте рассказывается и о с" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/404.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #404" />
+  <meta property="og:description" content=" Финальные впечатления от ICML 2026 и любопытные исследования    Карина Романова , которая занимается LLM-агентами в Алисе, поделилась впечатлениями от ICML   на Хабре  . В тексте рассказывается и о с" />
+  <meta property="og:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/404_480.webp" />
+  <meta property="og:image:alt" content="ML Underhood" />
+  <meta property="article:published_time" content="2026-08-28T11:54:28+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/404_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=404" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="404">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2026-08-28T11:54:28+00:00">2026-08-28 11:54 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Финальные впечатления от ICML 2026 и любопытные исследования</strong><br><br><a href="https://t.me/nadlskom" rel="nofollow noopener noreferrer">Карина Романова</a>, которая занимается LLM-агентами в Алисе, поделилась впечатлениями от ICML <a href="https://habr.com/ru/companies/yandex/articles/1073774/" rel="nofollow noopener noreferrer"><u>на Хабре</u></a>. В тексте рассказывается и о статьях, и о воркшопах, и об организации мероприятия — обязательно почитайте. А здесь — о трёх исследованиях Яндекса, которые представили на конференции и которые отметила Карина. <br><br><a href="https://arxiv.org/abs/2605.31500" rel="nofollow noopener noreferrer"><strong><u>On Efficient Scaling of GNNs via IO-Aware Layers Implementations</u></strong></a><br><br>Когда мы пытаемся ускорить GNN на GPU, сразу хочется оптимизировать математические вычисления. На практике же выясняется, что GNN чаще упираются не в compute, а в память и скорость передачи данных.<br><br>Авторы разобрали популярные семейства графовых моделей, нашли их узкие места при работе с памятью и адаптировали низкоуровневые GPU-оптимизации под особенности графовых данных, по сути, применив IO-aware-подход, похожий на идеи из FlashAttention.<br><br><strong>Что получилось</strong><br><br><strong>Для GATv2: </strong>кастомные GPU-ядра показали ускорение до 8,5 раз относительно библиотеки DGL (медиана — в два раза), а пиковое потребление памяти снизилось до 76 раз (медиана — в шесть раз).<br><br><strong>Для Graph Transformer: </strong>отдельная block-sparse-реализация под Tensor Cores ускорила работу до 7,3 раза на локально плотных графах.<br><br><a href="https://arxiv.org/abs/2509.21489" rel="nofollow noopener noreferrer"><strong><u>GraphPFN: A Prior-Data Fitted Graph Foundation Model</u></strong></a><br><br>Воркшоп был посвящён развитию graph foundation models — переходу от узкоспециализированных моделей для отдельных задач к универсальным foundation-моделям для работы с графами. Сама статья о GraphPFN, к слову, <a href="https://t.me/MLunderhood/369" rel="nofollow noopener noreferrer">получила</a> Best Paper Award. <br><br><strong>Как устроена GraphPFN</strong><br><br>— В основе — подход PFN: модель развивает концепцию Prior-Data Fitted Networks.<br>— GraphPFN предобучают на миллионах специально сгенерированных синтетических графов.<br>— Благодаря синтетическому претрейну модель умеет работать с реальными графами прямо «из коробки» в режиме in-context learning без долгого переобучения или после минимального файнтюнинга.<br>— Результаты: на широком наборе реальных графовых датасетов GraphPFN показала лучшие результаты среди протестированных в работе подходов.<br><br>В рамках того же воркшопа Людмила Прохоренкова из Yandex Research участвовала в панельной дискуссии о будущем graph foundation-моделей вместе с исследователями из RWTH Aachen, Georgia Tech и Arizona State University. На панельной дискуссии обсуждались последние достижения, открытые проблемы и перспективные направления развития графовых foundation-моделей.<br><br><a href="https://arxiv.org/abs/2606.23740" rel="nofollow noopener noreferrer"><strong><u>Weight-Space Geometry of Offline Reasoning Training</u></strong></a><br><br>Обычно offline RL-лоссы для RFT, RIFT, DFT, Offline GRPO и DPO сравнивают с SFT по финальной accuracy. Мы решили посмотреть на другую сторону этих методов: насколько различаются изменения, которые они вносят в модель. <br><br><strong>Как проводили эксперимент</strong><br><br>Чтобы сравнение было честным, мы зафиксировали условия:<br><br>— Взяли единый набор математических rollout’ов.<br>— Обучили все шесть методов на модели Qwen3-4B-Instruct с attention-only LoRA.<br>— Сравнили получившиеся LoRA-дельты (ΔW).<br><br><strong>Что получилось</strong><br><br>Оказалось, что у SFT, RFT и RIFT эти дельты направлены почти в одну сторону, хотя их величина различается. DFT отклоняется от этого направления заметно сильнее, а у Offline GRPO около 67% апдейта глобально и до 86% в последних слоях приходится на компоненту, ортогональную направлению SFT. <br><br>DPO занимает почти отдельное подпространство и показывает лучшую accuracy в нашем протоколе. Однако его обучали с learning rate в десять раз меньше и на меньшем числе примеров, поэтому разницу нельзя объяснять только устройством лосса. <br><br>Получается, что разные методы могут сильно различаться по формуле, но в контролируемом эксперименте приводить к неожиданно близким направлениям адаптации весов. При этом важно учесть, что вывод относится именно к фиксированным математическим rollout’ам, Qwen3-4B-Instruct и attention-only LoRA, а не ко всем весам и сценариям обучения вообще.<br><br>#YaICML2026<br><br><a href="https://t.me/MLunderhood" rel="nofollow noopener noreferrer">ML Underhood</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/404_480.webp" srcset="../../assets/media/thumbs/404_480.webp 480w, ../../assets/media/404.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="404" data-image-index="0" /></div></div>
+      <div class="actions">
+        <span>596 просмотров · 20 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/404" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./404.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link disabled" href="#" style="visibility:hidden">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./398.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 404, "media": [{"kind": "photo", "path": "../../assets/media/404.jpg", "thumb": "../../assets/media/thumbs/404_480.webp", "size": 235499, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLunderhood", "last_sync_utc": "2026-08-28T19:36:37Z", "posts_count": 158, "last_seen_message_id": 404, "stats": {"new": 235, "updated": 57, "media_downloaded": 235}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>
