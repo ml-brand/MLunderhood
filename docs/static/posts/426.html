@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ML Underhood — пост #426</title>
+  <meta name="description" content=" Выпустили агента «Исследовать» в Алисе AI .  Рассказываем, почему сделали ставку на обвязку и как это теперь поддерживать        Агент «Исследовать» — это режим Deep Research’а в чате с Алисой AI. Он" />
+  <link rel="icon" href="../../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://ml-brand.github.io/MLunderhood/static/posts/426.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ML Underhood — пост #426" />
+  <meta property="og:description" content=" Выпустили агента «Исследовать» в Алисе AI .  Рассказываем, почему сделали ставку на обвязку и как это теперь поддерживать        Агент «Исследовать» — это режим Deep Research’а в чате с Алисой AI. Он" />
+  <meta property="og:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/426_480.webp" />
+  <meta property="og:image:alt" content="ML Underhood" />
+  <meta property="article:published_time" content="2026-09-16T11:05:11+00:00" />
+  <meta property="article:author" content="ML Underhood" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ml-brand.github.io/MLunderhood/assets/media/thumbs/426_480.webp" />
+  <link rel="stylesheet" href="../../style.css" />
+  <script src="../../metrika.js"></script>
+</head>
+<body data-index-href="../index.html">
+  <header class="header">
+    <div class="container">
+      <div class="title-grid single-title">
+        <a class="grid-avatar" href="#" target="_blank" rel="noopener">
+          <img id="channelAvatar" class="channel-avatar" src="../../assets/channel_avatar.jpg" alt="Аватар канала"  />
+        </a>
+        <div class="grid-main">
+          <div class="title-head">
+            <a class="back-link" href="../index.html">← Ко всем постам</a>
+            <a class="badge-chip" id="siteTitleWrap" href="#" target="_blank" rel="noopener"><h1 id="siteTitle">ML Underhood</h1></a>
+            <div class="hero-actions">
+              <a id="subscribeBtn" class="subscribe-btn" href="https://t.me/+pMU3hEMtRO5jMzQy" target="_blank" rel="noopener" >Подписаться</a>
+              <a class="icon-btn" href="../../post.html?id=426" aria-label="Открыть динамическую страницу поста">↺</a>
+              <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div id="promoBanner" class="promo-banner" hidden>
+    <div class="container promo-inner">
+      <span class="promo-text"><a href="https://t.me/addlist/5NH3RoVejEI1MGEy">Подпишись на все наши ML каналы. Они классные, отвечаем!</a></span>
+      <button id="promoClose" class="promo-close" type="button" aria-label="Скрыть плашку">×</button>
+    </div>
+  </div>
+  
+
+  <main class="container single-page">
+    <article id="postContainer" class="post post-page" data-post-id="426">
+      <div class="post-header">
+        <div class="right"><span class="post-date" data-iso-date="2026-09-16T11:05:11+00:00">2026-09-16 11:05 UTC</span></div>
+      </div>
+      <div class="post-body"><strong>Выпустили агента «Исследовать» в Алисе AI</strong>. <strong>Рассказываем, почему сделали ставку на обвязку и как это теперь поддерживать</strong>     <br><br>Агент «Исследовать» — это режим Deep Research’а в чате с Алисой AI. Он умеет строить оптимальный план для решения сложной пользовательской задачи. Для этого делает сотни поисков по запросу, пишет Python‑код, ходит на сайты, анализирует скачанные файлы и многое другое. <br><br>Работа над агентом началась примерно год назад. Как раз тогда — после релиза DeepSeek‑R1 — случился бум ризонинг‑моделей. <strong>Команда агента «Исследовать» и её лид Прохор Гладких</strong>, стартовали с того, что научили режим «Рассуждать» работать со свежими данными из сети. Сделали простой RAG-пайплайн с мультизапросным поиском, где запросы генерировала сама LLM. Пользователи оценили качество ответов, и стало понятно, что нужен полноценный Deep Research.<br><br>Как обычно, действовать нужно было быстро и в условиях всяческих ограничений. Поэтому решили сделать ставку на обвязку (харнесс) вокруг LLM. Ведь, меняя одну лишь обвязку на той же модели, мы получаем скачки метрик на десятки пунктов. Например, на SWE-bench с 3,8% до 12,5%, а на BrowseComp с 1,9% до 51,5%. <br><br>Кроме того, каждый токен в контексте и каждый лишний вызов модели — это GPU-время. Чтобы оптимизироваться тут, сделали три вещи. <br><br>1) Отдали обработку поисковых сниппетов обученному классификатору вместо LLM. <br>2) В инструменты стали ходить только когда это реально нужно для исследования. <br>3) Генерацию плана перевели на модель полегче без потери качества. <br><br>В итоге стоимость запроса сократилась в 6,6 раза, латенси для 90% запросов сократилась с 30 минут до 2,5. То есть пользователи стали получать ответы с тем же качеством ощутимо быстрее. <br><br>Пожалуй самый яркий фейл за время работы — то, что пришлось целиком выкинуть первый прототип, собранный на CodeAgent. Эта модель вызывает инструменты, генерируя Python‑код. И метрики там сразу вышли приличные: FRAMES — 75, SimpleQA — 81, GAIA — 26, пониже, потому что агент не умел работать с файлами.<br><br>Радовались до тех пор, пока не попробовали протащить решение в прод. Сгенерированный код нужно исполнять в песочнице с доступом в интернет, а значит — за пределами внутреннего контура. При этом инструменты агента живут внутри контура, поэтому пришлось бы пробрасывать tool-call из внешней сети внутрь, что небезопасно. К счастью, в то время вышла опенсорс-модель с хорошим function calling. <strong>За две недели команда полностью переписала агента: отказалась от CodeAgent и перешла на классический function calling loop. </strong>Ещё за неделю побили метрики первого прототипа.<br><br>После переезда на function calling агент начал обрастать обвязкой. В основе классический агентный цикл: модель вызывает инструменты, пока не решит, что исследование закончено. Стратегию держит опять же сама модель: строит план, обновляет его по ходу и решает, куда копать дальше. Увидеть, что наросло вокруг этого цикла за год, можно <em>на схеме в шапке поста</em>.<br><br>Решение выглядит крутым, но есть нюанс. Мы помним, что каждый компонент обвязки — заплатка под текущее ограничение модели. С очередным релизом эти компоненты могут устареть. Поэтому харнесс нужно не только наращивать, но и регулярно срезать, снова и снова измеряя пользу каждого компонента на каждом релизе модели. И это — недели работы. <br><br>Поэтому следующий большой шаг — автоадаптация харнесса без ручной перенастройки. Обязательно поделимся результатами в новых постах.<br><br>В полной версии <a href="https://habr.com/ru/companies/yandex/articles/1079290/" rel="nofollow noopener noreferrer">статьи на Хабре</a> разобрали кейсы, из которых понятнее, как именно наращиваем и срезаем обвязку, поделились замерами на публичных бенчмарках и ключевыми метриками. <br><br><a href="https://t.me/MLunderhood" rel="nofollow noopener noreferrer">ML Underhood</a><div class="media"><img class="media-img" loading="lazy" src="../../assets/media/thumbs/426_480.webp" srcset="../../assets/media/thumbs/426_480.webp 480w, ../../assets/media/426.jpg 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="" data-post-id="426" data-image-index="0" /></div></div>
+      <div class="actions">
+        <span>521 просмотров · 21 реакций</span>
+        <span class="action-links"><a href="https://t.me/MLunderhood/426" target="_blank" rel="noopener">Открыть в Telegram</a> · <a href="../index.html">К списку постов</a> · <a href="./426.html">Ссылка на этот пост</a></span>
+      </div>
+    </article>
+
+    <div class="pager single-nav">
+      <a id="prevPost" class="nav-link disabled" href="#" style="visibility:hidden">← Более новый</a>
+      <a id="nextPost" class="nav-link" href="./420.html" style="visibility:visible">Более старый →</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>based on <a href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">tg-to-gh-pages</a> (created by <a href="https://github.com/ml-brand" target="_blank" rel="noopener">ML Brand</a>)</span>
+        <a id="repoLink" href="https://github.com/ml-brand/tg-to-gh-pages" target="_blank" rel="noopener">Do the same with your channel.</a>
+        <span class="footer-links">
+          static copy ·
+          <a href="../../feed.xml" target="_blank" rel="noopener">RSS</a> ·
+          <a href="../../atom.xml" target="_blank" rel="noopener">Atom</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__STATIC_POSTS = [{"id": 426, "media": [{"kind": "photo", "path": "../../assets/media/426.jpg", "thumb": "../../assets/media/thumbs/426_480.webp", "size": 99490, "mime": "image/jpeg", "name": null}]}];
+    window.__STATIC_META = {"title": "ML Underhood", "username": "MLunderhood", "channel": "MLunderhood", "last_sync_utc": "2026-09-16T12:51:48Z", "posts_count": 163, "last_seen_message_id": 426, "stats": {"new": 252, "updated": 51, "media_downloaded": 252}, "avatar": "assets/channel_avatar.jpg", "meta_schema_version": "1.0.0", "posts_schema_version": "1.0.0"};
+  </script>
+  <script src="../../common.js"></script>
+  <script src="../../static.js"></script>
+</body>
+</html>
